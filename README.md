@@ -76,6 +76,11 @@ You can download the apk directly on the Release section on the rightside of git
 - Text islands: pill-shaped backgrounds behind text elements, with color inversion.
 - Theme export/import (JSON).
 
+**Languages**
+- In-app language switcher: follow system, English, or Simplified Chinese.
+- Full Simplified Chinese (zh-CN) UI translation.
+- Localized device settings search entries with Chinese keyword support.
+
 **Gestures**
 - 4 swipe directions + double tap + clock/date/quote tap, each assignable to 15+ actions.
 - Actions: open app, drawer, notifications, recents, simple tray, hub, settings, e-ink refresh, brightness toggle, lock screen, quick settings, power dialog, restart, exit inkOS, toggle private space, toggle work profile.
