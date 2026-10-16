@@ -302,7 +302,7 @@ class LettersFragment : Fragment() {
                 hasShownNotifDialog = true
                 showPermissionExplanationDialog(
                     title = getString(R.string.perm_notification_title),
-                    message = "inkOS needs notification access to show your notifications here. You will be taken to Android settings to grant this permission.",
+                    message = getString(R.string.perm_notification_access_message),
                     onContinue = {
                         try {
                             ctx.startActivity(Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS))
@@ -319,10 +319,10 @@ class LettersFragment : Fragment() {
         // One-time tooltip for Letters (only after notification permission granted)
         com.github.gezimos.inkos.ui.compose.OneTimeTooltip(
             key = "tooltip_letters_shown",
-            title = "Letters",
+            title = stringResource(R.string.letters_screen_title),
             lines = listOf(
-                "Swipe up and down to move between notifications.",
-                "Long press dismiss to dismiss all notifications."
+                stringResource(R.string.tooltip_letters_line1),
+                stringResource(R.string.tooltip_letters_line2)
             ),
             trigger = hasNotifPermission
         )
@@ -760,7 +760,7 @@ class LettersFragment : Fragment() {
                 
                 Icon(
                     imageVector = Icons.Rounded.Settings,
-                    contentDescription = "Notification settings",
+                    contentDescription = stringResource(R.string.cd_notification_settings),
                     tint = Theme.colors.text,
                     modifier = Modifier
                         .size(16.dp)

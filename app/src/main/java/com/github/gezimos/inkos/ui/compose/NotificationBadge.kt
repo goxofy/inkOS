@@ -5,7 +5,6 @@ import com.github.gezimos.inkos.helper.AudioWidgetHelper
 import com.github.gezimos.inkos.services.NotificationManager
 
 private const val SIGNAL_PACKAGE = "org.thoughtcrime.securesms"
-private const val FALLBACK_MESSAGE = "Notification received"
 
 data class NotificationBadgeConfig(
     val showBadge: Boolean,
@@ -31,7 +30,8 @@ fun buildNotificationBadgeDisplay(
     packageName: String,
     notificationInfo: NotificationManager.NotificationInfo?,
     mediaInfo: AudioWidgetHelper.MediaPlayerInfo?,
-    config: NotificationBadgeConfig
+    config: NotificationBadgeConfig,
+    fallbackMessage: String
 ): NotificationBadgeDisplay {
     val sanitizedLabel = sanitize(label)
     val displayLabel = when {
@@ -71,7 +71,7 @@ fun buildNotificationBadgeDisplay(
         !isMedia && config.showNotificationText && (title != null || text != null) ->
             buildMessagingSubtitle(title, text, packageName, config, charLimit)
         !isMedia && config.showNotificationText && title == null && text == null ->
-            buildFallbackSubtitle(displayLabel, config, charLimit)
+            buildFallbackSubtitle(displayLabel, config, charLimit, fallbackMessage)
         else -> null
     }
 
@@ -154,7 +154,8 @@ private fun buildMessagingSubtitle(
 private fun buildFallbackSubtitle(
     displayLabel: String,
     config: NotificationBadgeConfig,
-    charLimit: Int
+    charLimit: Int,
+    fallbackMessage: String
 ): String? {
     val showName = config.showNotificationSenderName
     val showMessage = config.showNotificationMessage
@@ -166,7 +167,7 @@ private fun buildFallbackSubtitle(
     }
     if (showMessage) {
         if (builder.isNotEmpty()) builder.append(": ")
-        builder.append(FALLBACK_MESSAGE)
+        builder.append(fallbackMessage)
     }
 
     if (builder.isEmpty()) return null

@@ -114,8 +114,7 @@ class SimpleTrayFragment : Fragment() {
             if (showExplanation) {
                 showPermissionExplanationDialog(
                     title = getString(R.string.perm_write_settings_title),
-                    message = "This app needs permission to modify system settings to control screen brightness. " +
-                        "You will be taken to Android settings to grant this permission.",
+                    message = getString(R.string.perm_write_settings_message),
                     onContinue = {
                         try {
                             val intent = Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS)
@@ -483,11 +482,11 @@ class SimpleTrayFragment : Fragment() {
             if (event.action == KeyEvent.ACTION_DOWN) {
                 when (keyCode) {
                     KeyEvent.KEYCODE_DPAD_LEFT -> {
-                        context?.showShortToast("Dismiss: Del, C, #1 | Long press to dismiss all")
+                        context?.let { ctx -> ctx.showShortToast(ctx.getString(R.string.tray_tip_dismiss)) }
                         return@setOnKeyListener true
                     }
                     KeyEvent.KEYCODE_DPAD_RIGHT -> {
-                        context?.showShortToast("Open: Enter, Dpad Center, #3")
+                        context?.let { ctx -> ctx.showShortToast(ctx.getString(R.string.tray_tip_open)) }
                         return@setOnKeyListener true
                     }
                 }

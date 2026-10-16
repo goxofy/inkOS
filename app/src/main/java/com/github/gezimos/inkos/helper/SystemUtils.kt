@@ -314,7 +314,7 @@ fun openAppInfo(context: Context, userHandle: UserHandle, packageName: String) {
     val intent: Intent? = context.packageManager.getLaunchIntentForPackage(packageName)
     intent?.let {
         launcher.startAppDetailsActivity(intent.component, userHandle, null, null)
-    } ?: context.showLongToast("Unable to to open app info")
+    } ?: context.showLongToast(context.getString(R.string.unable_open_app_info))
 }
 
 
@@ -339,7 +339,7 @@ fun initActionService(context: Context): ActionService? {
             context.openAccessibilitySettings()
         }
     } else {
-        context.showLongToast("This action requires Android P (9) or higher")
+        context.showLongToast(context.getString(R.string.requires_android_p))
     }
 
     return null

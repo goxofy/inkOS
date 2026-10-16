@@ -77,8 +77,8 @@ fun RecentsLayout(
 
     OneTimeTooltip(
         key = "tooltip_recents_shown",
-        title = "Recents",
-        lines = listOf("Tap the title to toggle between Recents and Most Used"),
+        title = stringResource(R.string.shortcut_recents_short),
+        lines = listOf(stringResource(R.string.tooltip_recents_line)),
         trigger = hasPermission
     )
 
@@ -179,7 +179,7 @@ fun RecentsLayout(
                             ) {
                                 Icon(
                                     imageVector = Icons.Rounded.Settings,
-                                    contentDescription = "Recents settings",
+                                    contentDescription = stringResource(R.string.cd_recents_settings),
                                     tint = if (headerFocused && headerSelectedIndex == 1) bgColor else textColor,
                                     modifier = Modifier
                                         .size(with(density) { uiState.appDrawerSize.sp.scaled(screenScale).toDp() })
@@ -295,12 +295,13 @@ fun RecentAppItem(
         val now = System.currentTimeMillis()
         val diff = now - recentApp.lastUsedTime
         when {
-            diff < 60_000 -> "Just now"
-            diff < 3_600_000 -> "${diff / 60_000}m ago"
-            diff < 86_400_000 -> "${diff / 3_600_000}h ago"
-            diff < 604_800_000 -> "${diff / 86_400_000}d ago"
+            diff < 60_000 -> stringResource(R.string.recents_just_now)
+            diff < 3_600_000 -> stringResource(R.string.recents_min_ago_fmt, (diff / 60_000).toInt())
+            diff < 86_400_000 -> stringResource(R.string.recents_hour_ago_fmt, (diff / 3_600_000).toInt())
+            diff < 604_800_000 -> stringResource(R.string.recents_day_ago_fmt, (diff / 86_400_000).toInt())
             else -> {
-                val sdf = SimpleDateFormat("MMM d", Locale.getDefault())
+                val pattern = android.text.format.DateFormat.getBestDateTimePattern(Locale.getDefault(), "MMMdd")
+                val sdf = SimpleDateFormat(pattern, Locale.getDefault())
                 sdf.format(Date(recentApp.lastUsedTime))
             }
         }
@@ -312,7 +313,7 @@ fun RecentAppItem(
     val appNameHeight = remember(uiState.appDrawerSize, appFontFamily, screenScale, textMeasurer) {
         try {
             val measuredHeight = textMeasurer.measure(
-                text = AnnotatedString("Ag"),
+                text = AnnotatedString("Ag汉"),
                 style = TextStyle(fontSize = uiState.appDrawerSize.sp.scaled(screenScale), fontFamily = appFontFamily)
             ).size.height
             with(density) { measuredHeight.toDp() }
@@ -409,11 +410,13 @@ fun RecentAppItem(
                             ) {
                                 Text(
                                     text = labelWithCloneIndicator,
-                                    color = if (isSelected && isDpadMode) invertedHighlightTextColor else textColor,
-                                    fontSize = uiState.appDrawerSize.sp.scaled(screenScale),
+                                    style = TextStyle(
+                                        color = if (isSelected && isDpadMode) invertedHighlightTextColor else textColor,
+                                        fontSize = uiState.appDrawerSize.sp.scaled(screenScale),
+                                        fontFamily = appFontFamily
+                                    ),
                                     maxLines = 1,
-                                    overflow = TextOverflow.Ellipsis,
-                                    fontFamily = appFontFamily
+                                    overflow = TextOverflow.Ellipsis
                                 )
                             }
                             if (showLeaderDots) {
@@ -522,7 +525,7 @@ fun RecentAppPlaceholderItem(uiState: AppsDrawerUiState, isLastItem: Boolean = f
     val placeholderHeight = remember(uiState.appDrawerSize, placeholderFontFamily, screenScale, placeholderTextMeasurer) {
         try {
             val measured = placeholderTextMeasurer.measure(
-                text = AnnotatedString("Ag"),
+                text = AnnotatedString("Ag汉"),
                 style = TextStyle(fontSize = uiState.appDrawerSize.sp.scaled(screenScale), fontFamily = placeholderFontFamily)
             ).size.height
             with(density) { measured.toDp() }
@@ -535,16 +538,18 @@ fun RecentAppPlaceholderItem(uiState: AppsDrawerUiState, isLastItem: Boolean = f
         modifier = Modifier
             .fillMaxWidth()
             .padding(top = uiState.appDrawerGap.dp, bottom = uiState.appDrawerGap.dp)
-            .then(if (uiState.drawerShowIcons && placeholderHeight > 0.dp) Modifier.height(placeholderHeight) else Modifier),
+            .then(if (placeholderHeight > 0.dp) Modifier.height(placeholderHeight) else Modifier),
         contentAlignment = boxAlignment
     ) {
         Text(
             text = "placeholder",
-            color = Color.Transparent,
-            fontSize = uiState.appDrawerSize.sp.scaled(screenScale),
+            style = TextStyle(
+                color = Color.Transparent,
+                fontSize = uiState.appDrawerSize.sp.scaled(screenScale),
+                fontFamily = placeholderFontFamily
+            ),
             maxLines = 1,
-            overflow = TextOverflow.Ellipsis,
-            fontFamily = placeholderFontFamily
+            overflow = TextOverflow.Ellipsis
         )
     }
 }

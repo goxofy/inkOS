@@ -44,6 +44,7 @@ import androidx.compose.material.icons.rounded.FilterList
 import androidx.compose.material.icons.rounded.FormatSize
 import androidx.compose.material.icons.rounded.Forum
 import androidx.compose.material.icons.rounded.Info
+import androidx.compose.material.icons.rounded.Language
 import androidx.compose.material.icons.rounded.Lock
 import androidx.compose.material.icons.rounded.Notifications
 import androidx.compose.material.icons.rounded.OfflineBolt
@@ -79,6 +80,7 @@ import com.github.gezimos.inkos.ui.compose.gestureHelper
 import kotlinx.coroutines.launch
 import androidx.compose.ui.unit.sp
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.os.LocaleListCompat
 import androidx.core.os.bundleOf
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -129,6 +131,7 @@ import com.github.gezimos.inkos.ui.compose.getChosenThemeDisplayName
 import com.github.gezimos.inkos.ui.dialogs.ComposeBottomSheetHost
 import com.github.gezimos.inkos.ui.dialogs.ComposeDialogManager
 import com.github.gezimos.inkos.ui.dialogs.SearchFoldersSheet
+import com.github.gezimos.inkos.ui.dialogs.SingleChoiceSheet
 import com.github.gezimos.inkos.services.ActionService
 import com.github.gezimos.common.openAccessibilitySettings
 import kotlinx.coroutines.flow.collectLatest
@@ -205,15 +208,15 @@ class SettingsFragment : Fragment() {
                     e.printStackTrace()
                     dialogBuilder.showErrorDialog(
                         requireContext(),
-                        title = "Invalid Font File",
-                        message = "The selected file could not be loaded as a font. Please choose a valid font file."
+                        title = getString(R.string.font_invalid_title),
+                        message = getString(R.string.font_invalid_message)
                     )
                 }
             } else {
                 dialogBuilder.showErrorDialog(
                     requireContext(),
-                    title = "File Error",
-                    message = "Could not copy the selected file. Please try again."
+                    title = getString(R.string.file_error_title),
+                    message = getString(R.string.file_error_message)
                 )
             }
         }
@@ -274,6 +277,45 @@ class SettingsFragment : Fragment() {
             return true
         }
         return false
+    }
+
+    // ------------------------------------------------------------------
+    // Language
+    // ------------------------------------------------------------------
+
+    private fun currentLanguageIndex(): Int {
+        val tag = AppCompatDelegate.getApplicationLocales().toLanguageTags()
+        return when {
+            tag.isBlank() -> 0
+            tag.lowercase().startsWith("zh") -> 2
+            else -> 1
+        }
+    }
+
+    private fun showLanguageDialog() {
+        val context = requireContext()
+        val labels = listOf(
+            context.getString(R.string.language_system),
+            context.getString(R.string.language_english),
+            context.getString(R.string.language_chinese_simplified)
+        )
+        dialogBuilder.showSheet {
+            SingleChoiceSheet(
+                title = context.getString(R.string.settings_language),
+                options = labels.indices.toList(),
+                selectedIndex = currentLanguageIndex(),
+                optionLabel = { index -> labels[index] },
+                onSelect = { index, _ ->
+                    val locales = when (index) {
+                        0 -> LocaleListCompat.getEmptyLocaleList()
+                        1 -> LocaleListCompat.forLanguageTags("en")
+                        else -> LocaleListCompat.forLanguageTags("zh-CN")
+                    }
+                    AppCompatDelegate.setApplicationLocales(locales)
+                },
+                onDismiss = { dialogBuilder.dismissAll() }
+            )
+        }
     }
 
     // Signal to Compose to reset scroll position
@@ -602,6 +644,13 @@ class SettingsFragment : Fragment() {
                 titleFontSize = titleFontSize,
                 onClick = { navigateTo(SettingsRoute.Notifications) },
             )
+            SettingsHomeItem(
+                title = stringResource(R.string.settings_language),
+                imageVector = Icons.Rounded.Language,
+                description = stringResource(R.string.desc_language),
+                titleFontSize = titleFontSize,
+                onClick = { showLanguageDialog() },
+            )
             if (privateSpaceManager.isPrivateSpaceSupported() &&
                 privateSpaceManager.isPrivateSpaceSetUp(showToast = false, launchSettings = false)
             ) {
@@ -843,13 +892,13 @@ class SettingsFragment : Fragment() {
             )
             SettingsHomeItem(
                 title = stringResource(changeLauncherText) + if (!isinkosDefault(requireContext())) "*" else "",
-                description = "Choose which launcher to use as your home screen",
+                description = stringResource(R.string.settings_desc_choose_launcher),
                 titleFontSize = titleFontSize,
                 onClick = { requireContext().startActivity(Intent(android.provider.Settings.ACTION_HOME_SETTINGS)) }
             )
             SettingsHomeItem(
                 title = stringResource(R.string.onboarding),
-                description = "View the setup wizard again",
+                description = stringResource(R.string.settings_desc_setup_wizard),
                 titleFontSize = titleFontSize,
                 onClick = {
                     prefs.commitFirstOpen(true)
@@ -860,19 +909,19 @@ class SettingsFragment : Fragment() {
             )
             SettingsHomeItem(
                 title = stringResource(R.string.guide),
-                description = "Learn gestures and interactions",
+                description = stringResource(R.string.settings_desc_learn_gestures),
                 titleFontSize = titleFontSize,
                 onClick = { findNavController().navigate(R.id.guideFragment) }
             )
             SettingsHomeItem(
                 title = stringResource(R.string.advanced_settings_restart_title),
-                description = "Restart inkOS without rebooting the device",
+                description = stringResource(R.string.settings_desc_restart),
                 titleFontSize = titleFontSize,
                 onClick = { AppReloader.restartApp(requireContext()) }
             )
             SettingsHomeItem(
                 title = stringResource(R.string.settings_exit_inkos_title),
-                description = "Switch to a different launcher",
+                description = stringResource(R.string.settings_desc_switch_launcher),
                 titleFontSize = titleFontSize,
                 onClick = { exitLauncher() }
             )
@@ -884,7 +933,7 @@ class SettingsFragment : Fragment() {
             addCategory(Intent.CATEGORY_HOME)
             flags = Intent.FLAG_ACTIVITY_NEW_TASK
         }
-        startActivity(Intent.createChooser(intent, "Choose your launcher"))
+        startActivity(Intent.createChooser(intent, getString(R.string.choose_launcher_title)))
     }
 
     // ==================================================================
@@ -1229,7 +1278,7 @@ class SettingsFragment : Fragment() {
                         val appWidgetHelper = com.github.gezimos.inkos.helper.AppWidgetHelper.getInstance(requireContext())
                         val widgetApps = appWidgetHelper.getInstalledWidgetsByApp()
                         if (widgetApps.isEmpty()) {
-                            android.widget.Toast.makeText(requireContext(), "No widgets available", android.widget.Toast.LENGTH_SHORT).show()
+                            android.widget.Toast.makeText(requireContext(), requireContext().getString(R.string.toast_no_widgets_available), android.widget.Toast.LENGTH_SHORT).show()
                             return@SettingsSelect
                         }
                         val ctx = requireContext()
@@ -1365,7 +1414,7 @@ class SettingsFragment : Fragment() {
                 onClick = {
                     val allShortcuts = com.github.gezimos.inkos.helper.getAllAppShortcuts(requireContext())
                     if (allShortcuts.isEmpty()) {
-                        android.widget.Toast.makeText(requireContext(), "No app shortcuts available", android.widget.Toast.LENGTH_SHORT).show()
+                        android.widget.Toast.makeText(requireContext(), requireContext().getString(R.string.no_app_shortcuts), android.widget.Toast.LENGTH_SHORT).show()
                         return@SettingsSelect
                     }
                     val inkosShortcuts = allShortcuts.filter { it.packageName == BuildConfig.APPLICATION_ID && it.shortcutId.startsWith("inkos_") }
@@ -1570,11 +1619,11 @@ class SettingsFragment : Fragment() {
                 }
                 SettingsSelect(
                     title = stringResource(R.string.ui_scale), option = displayLabel, fontSize = titleFontSize,
-                    description = "All in one UI Scaling",
+                    description = stringResource(R.string.ui_scaling_desc),
                     onClick = {
                         dialogBuilder.showSheet {
                             val baseSettingsSize = 16f
-                            SheetTitle("UI Scale")
+                            SheetTitle(stringResource(R.string.ui_scale))
                             allModes.forEachIndexed { index, mode ->
                                 val label = if (mode == detected) "${mode.label} (Auto)" else mode.label
                                 val interactionSource = remember { MutableInteractionSource() }
@@ -2006,10 +2055,10 @@ class SettingsFragment : Fragment() {
                 }
             )
             SettingsSelect(
-                title = "Gesture vs page conflict",
-                option = "Read more",
+                title = stringResource(R.string.gesture_vs_page_conflict),
+                option = stringResource(R.string.read_more),
                 fontSize = titleFontSize,
-                description = "How short vs long swipes work with home pages",
+                description = stringResource(R.string.gesture_conflict_desc),
                 onClick = { dialogBuilder.showGestureVsPageConflictSheet() }
             )
             SettingsSelect(

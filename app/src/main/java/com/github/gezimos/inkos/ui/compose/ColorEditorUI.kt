@@ -356,12 +356,12 @@ fun CustomThemeCreator(
                     modifier = Modifier.fillMaxWidth().align(Alignment.TopStart),
                     verticalArrangement = Arrangement.spacedBy(4.dp.scaled(screenScale))
                 ) {
-                    Text(text = "Light Theme", style = SettingsTheme.typography.title, fontSize = fontSize, color = lightTextColorCompose)
+                    Text(text = stringResource(R.string.light_theme), style = SettingsTheme.typography.title, fontSize = fontSize, color = lightTextColorCompose)
                     Text(text = "12:20", style = SettingsTheme.typography.body, fontSize = fontSize, color = lightTextColorCompose)
-                    Text(text = "Phone", style = SettingsTheme.typography.body, fontSize = fontSize, color = lightTextColorCompose)
-                    Text(text = "Messages", style = SettingsTheme.typography.body, fontSize = fontSize, color = lightTextColorCompose)
-                    Text(text = "Email", style = SettingsTheme.typography.body, fontSize = fontSize, color = lightTextColorCompose)
-                    Text(text = "Camera", style = SettingsTheme.typography.body, fontSize = fontSize, color = lightTextColorCompose)
+                    Text(text = stringResource(R.string.sample_phone), style = SettingsTheme.typography.body, fontSize = fontSize, color = lightTextColorCompose)
+                    Text(text = stringResource(R.string.sample_messages), style = SettingsTheme.typography.body, fontSize = fontSize, color = lightTextColorCompose)
+                    Text(text = stringResource(R.string.sample_email), style = SettingsTheme.typography.body, fontSize = fontSize, color = lightTextColorCompose)
+                    Text(text = stringResource(R.string.sample_camera), style = SettingsTheme.typography.body, fontSize = fontSize, color = lightTextColorCompose)
                 }
             }
             Box(
@@ -377,12 +377,12 @@ fun CustomThemeCreator(
                     modifier = Modifier.fillMaxWidth().align(Alignment.TopStart),
                     verticalArrangement = Arrangement.spacedBy(4.dp.scaled(screenScale))
                 ) {
-                    Text(text = "Dark Theme", style = SettingsTheme.typography.title, fontSize = fontSize, color = darkTextColorCompose)
+                    Text(text = stringResource(R.string.dark_theme), style = SettingsTheme.typography.title, fontSize = fontSize, color = darkTextColorCompose)
                     Text(text = "12:20", style = SettingsTheme.typography.body, fontSize = fontSize, color = darkTextColorCompose)
-                    Text(text = "Phone", style = SettingsTheme.typography.body, fontSize = fontSize, color = darkTextColorCompose)
-                    Text(text = "Messages", style = SettingsTheme.typography.body, fontSize = fontSize, color = darkTextColorCompose)
-                    Text(text = "Email", style = SettingsTheme.typography.body, fontSize = fontSize, color = darkTextColorCompose)
-                    Text(text = "Camera", style = SettingsTheme.typography.body, fontSize = fontSize, color = darkTextColorCompose)
+                    Text(text = stringResource(R.string.sample_phone), style = SettingsTheme.typography.body, fontSize = fontSize, color = darkTextColorCompose)
+                    Text(text = stringResource(R.string.sample_messages), style = SettingsTheme.typography.body, fontSize = fontSize, color = darkTextColorCompose)
+                    Text(text = stringResource(R.string.sample_email), style = SettingsTheme.typography.body, fontSize = fontSize, color = darkTextColorCompose)
+                    Text(text = stringResource(R.string.sample_camera), style = SettingsTheme.typography.body, fontSize = fontSize, color = darkTextColorCompose)
                 }
             }
         }

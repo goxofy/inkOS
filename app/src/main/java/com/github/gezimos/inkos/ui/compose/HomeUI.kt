@@ -267,13 +267,13 @@ fun HomeUI(
                 TooltipBubble(
                     title = when (tooltipStep) {
                         1 -> stringResource(R.string.settings_name)
-                        2 -> "Home Pages"
-                        else -> "App Drawer"
+                        2 -> stringResource(R.string.home_pages_title)
+                        else -> stringResource(R.string.app_drawer)
                     },
                     lines = when (tooltipStep) {
                         1 -> listOf(stringResource(R.string.tooltip_pinch_settings))
-                        2 -> listOf("Swipe up/down to move between pages")
-                        else -> listOf("Long swipe up to open App Drawer")
+                        2 -> listOf(stringResource(R.string.tooltip_home_swipe_pages))
+                        else -> listOf(stringResource(R.string.tooltip_home_long_swipe_drawer))
                     },
                     icon = when (tooltipStep) {
                         2 -> Icons.Rounded.SwipeVertical
@@ -3006,7 +3006,7 @@ private fun HomeAppsPager(
     val appNameHeight = remember(state.appTextSize, screenScale, pagerAppsFontFamily, textMeasurer) {
         try {
             val measuredHeight = textMeasurer.measure(
-                text = AnnotatedString("Ag"),
+                text = AnnotatedString("Ag汉"),
                 style = TextStyle(fontSize = scaledAppTextSize.sp, fontFamily = pagerAppsFontFamily)
             ).size.height
             with(density) { measuredHeight.toDp() }
@@ -3347,7 +3347,7 @@ private fun HomeAndroidWidget(
                         Text(stringResource(R.string.loading_widget), color = Theme.colors.text.copy(alpha = 0.5f), fontSize = 14.sp)
                     }
                 } else {
-                    Text("Tap to choose widget", color = Theme.colors.text.copy(alpha = 0.5f), fontSize = 14.sp)
+                    Text(stringResource(R.string.tap_to_choose_widget), color = Theme.colors.text.copy(alpha = 0.5f), fontSize = 14.sp)
                 }
 
                 if (isEditMode) {
@@ -3660,19 +3660,22 @@ private fun HomeAppButton(
     val notificationInfo = state.notifications[app.activityPackage]
 
     // Use pre-computed badgeConfig from pager
+    val notifFallbackGeneric = stringResource(R.string.notif_fallback_generic)
     val badgeDisplay = remember(
         rawLabel,
         app.activityPackage,
         notificationInfo,
         state.mediaInfo,
-        badgeConfig
+        badgeConfig,
+        notifFallbackGeneric
     ) {
         buildNotificationBadgeDisplay(
             label = rawLabel,
             packageName = app.activityPackage,
             notificationInfo = notificationInfo,
             mediaInfo = state.mediaInfo,
-            config = badgeConfig
+            config = badgeConfig,
+            fallbackMessage = notifFallbackGeneric
         )
     }
 

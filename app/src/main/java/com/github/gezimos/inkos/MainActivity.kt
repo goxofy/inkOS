@@ -114,7 +114,7 @@ class MainActivity : AppCompatActivity() {
                                 android.widget.Toast.makeText(this, getString(R.string.theme_imported), android.widget.Toast.LENGTH_SHORT).show()
                             } catch (e: Exception) {
                                 Log.e("ThemeImport", "Import failed", e)
-                                ComposeDialogManager(this, this).showErrorDialog(this, "Import failed", e.message ?: "Unknown error")
+ComposeDialogManager(this, this).showErrorDialog(this, getString(R.string.import_failed), e.message ?: getString(R.string.unknown_error))
                                 return@registerForActivityResult
                             }
                         } else {
@@ -140,7 +140,7 @@ class MainActivity : AppCompatActivity() {
                         android.widget.Toast.makeText(this, getString(R.string.theme_exported), android.widget.Toast.LENGTH_SHORT).show()
                     } catch (e: Exception) {
                         Log.e("ThemeExport", "Export failed", e)
-                        ComposeDialogManager(this, this).showErrorDialog(this, "Export failed", e.message ?: "Unknown error")
+                        ComposeDialogManager(this, this).showErrorDialog(this, getString(R.string.export_failed), e.message ?: getString(R.string.unknown_error))
                     }
                 }
             }
@@ -154,13 +154,13 @@ class MainActivity : AppCompatActivity() {
                         val prefs = Prefs(applicationContext)
                         val json = applicationContext.contentResolver.openInputStream(uri)?.use { input ->
                             BufferedReader(InputStreamReader(input)).use { it.readText() }
-                        } ?: throw IllegalArgumentException("Cannot read file")
+                        } ?: throw IllegalArgumentException(getString(R.string.cannot_read_file))
                         prefs.loadThemeFromJson(json)
                         android.widget.Toast.makeText(this, getString(R.string.theme_imported), android.widget.Toast.LENGTH_SHORT).show()
                         startActivity(Intent.makeRestartActivityTask(this.intent?.component))
                     } catch (e: Exception) {
                         Log.e("ThemeImport", "Import failed", e)
-                        ComposeDialogManager(this, this).showErrorDialog(this, "Import failed", e.message ?: "Unknown error")
+                        ComposeDialogManager(this, this).showErrorDialog(this, getString(R.string.import_failed), e.message ?: getString(R.string.unknown_error))
                     }
                 }
             }

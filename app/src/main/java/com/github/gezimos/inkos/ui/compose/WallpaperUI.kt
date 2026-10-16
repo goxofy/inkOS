@@ -159,7 +159,7 @@ fun WallpaperUI(
     fun triggerSet(preset: WallpaperUtility.PresetWallpaper) {
         if (preset.isGenerated) {
             showSheet {
-                com.github.gezimos.inkos.ui.dialogs.SheetTitle(preset.name)
+                com.github.gezimos.inkos.ui.dialogs.SheetTitle(presetDisplayName(preset))
                 AlignmentPickerRow(
                     variants = preset.variants!!,
                     onSelect = { variantId ->
@@ -202,7 +202,7 @@ fun WallpaperUI(
             // Header
             SettingsComposable.PageHeader(
                 iconRes = R.drawable.ic_back,
-                title = selectedPreset.name.uppercase(),
+                title = presetDisplayName(selectedPreset).uppercase(),
                 onClick = onBackClick,
                 showStatusBar = showStatusBar,
                 titleFontSize = titleFontSize,
@@ -338,7 +338,7 @@ fun WallpaperUI(
                 ) {
                     Icon(
                         imageVector = Icons.Rounded.ChevronLeft,
-                        contentDescription = "Previous",
+                        contentDescription = stringResource(R.string.cd_previous),
                         tint = if (setFocused) bgColor else textColor,
                         modifier = Modifier
                             .size(24.dp.scaled(screenScale))
@@ -355,7 +355,7 @@ fun WallpaperUI(
                     )
                     Icon(
                         imageVector = Icons.Rounded.ChevronRight,
-                        contentDescription = "Next",
+                        contentDescription = stringResource(R.string.cd_next),
                         tint = if (setFocused) bgColor else textColor,
                         modifier = Modifier
                             .size(24.dp.scaled(screenScale))
@@ -567,5 +567,38 @@ private fun GeneratedPatternPreview(variant: Int, bgColor: androidx.compose.ui.g
                 }
             }
         }
+    }
+}
+
+@Composable
+private fun presetDisplayName(preset: WallpaperUtility.PresetWallpaper): String {
+    return when (preset.name) {
+        "White" -> stringResource(R.string.wp_preset_white)
+        "Black" -> stringResource(R.string.wp_preset_black)
+        "Japan" -> stringResource(R.string.wp_preset_japan)
+        "Japan 2" -> stringResource(R.string.wp_preset_japan2)
+        "NYC" -> stringResource(R.string.wp_preset_nyc)
+        "SF" -> stringResource(R.string.wp_preset_sf)
+        "Trees" -> stringResource(R.string.wp_preset_trees)
+        "Bamboo" -> stringResource(R.string.wp_preset_bamboo)
+        "Blossom" -> stringResource(R.string.wp_preset_blossom)
+        "Building" -> stringResource(R.string.wp_preset_building)
+        "Forrest" -> stringResource(R.string.wp_preset_forrest)
+        "Leaf" -> stringResource(R.string.wp_preset_leaf)
+        "Liberty" -> stringResource(R.string.wp_preset_liberty)
+        "Urban" -> stringResource(R.string.wp_preset_urban)
+        "Halfdots" -> stringResource(R.string.wp_preset_halfdots)
+        "Halfdots Two" -> stringResource(R.string.wp_preset_halfdots_two)
+        "Dots" -> stringResource(R.string.wp_preset_dots)
+        "Lines" -> stringResource(R.string.wp_preset_lines)
+        "Grid" -> stringResource(R.string.wp_preset_grid)
+        "Diagonal" -> stringResource(R.string.wp_preset_diagonal)
+        "Circles" -> stringResource(R.string.wp_preset_circles)
+        "Crosshatch" -> stringResource(R.string.wp_preset_crosshatch)
+        "Waves" -> stringResource(R.string.wp_preset_waves)
+        "Plus" -> stringResource(R.string.wp_preset_plus)
+        "Matrix" -> stringResource(R.string.wp_preset_matrix)
+        "Binary" -> stringResource(R.string.wp_preset_binary)
+        else -> preset.name
     }
 }

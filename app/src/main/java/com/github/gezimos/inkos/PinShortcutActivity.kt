@@ -99,7 +99,7 @@ class PinShortcutActivity : AppCompatActivity() {
                         val accepted = PinnedShortcutUtility.acceptPinRequest(this, request)
                         
                         if (accepted) {
-                            showShortToast("Shortcut pinned: $label")
+                            showShortToast(getString(R.string.shortcut_pinned_fmt, label))
                             
                             // Notify the apps repository to refresh
                             try {
@@ -109,7 +109,7 @@ class PinShortcutActivity : AppCompatActivity() {
                                 Log.e(TAG, "Failed to refresh app list", e)
                             }
                         } else {
-                            showShortToast("Failed to pin shortcut")
+                            showShortToast(getString(R.string.failed_pin_shortcut))
                         }
                     } else {
                         Log.e(TAG, "ShortcutInfo is null in pin request")
@@ -119,7 +119,7 @@ class PinShortcutActivity : AppCompatActivity() {
                 LauncherApps.PinItemRequest.REQUEST_TYPE_APPWIDGET -> {
                     // We don't support widget pinning yet
                     Log.d(TAG, "Widget pin request - not supported")
-                    showShortToast("Widget pinning not supported")
+                    showShortToast(getString(R.string.widget_pinning_not_supported))
                 }
                 
                 else -> {
@@ -128,7 +128,7 @@ class PinShortcutActivity : AppCompatActivity() {
             }
         } catch (e: Exception) {
             Log.e(TAG, "Error handling pin shortcut request", e)
-            showShortToast("Error pinning shortcut")
+            showShortToast(getString(R.string.error_pinning_shortcut))
         }
         
         finish()
@@ -169,7 +169,7 @@ class PinShortcutActivity : AppCompatActivity() {
                 )
                 
                 if (added) {
-                    showShortToast("Shortcut added: $shortcutName")
+                    showShortToast(getString(R.string.shortcut_added_fmt, shortcutName))
                     
                     // Notify refresh
                     try {
@@ -182,7 +182,7 @@ class PinShortcutActivity : AppCompatActivity() {
                     // Set result OK for the requesting app
                     setResult(RESULT_OK)
                 } else {
-                    showShortToast("Shortcut already exists")
+                    showShortToast(getString(R.string.shortcut_already_exists))
                     setResult(RESULT_CANCELED)
                 }
             } else {
@@ -191,7 +191,7 @@ class PinShortcutActivity : AppCompatActivity() {
             }
         } catch (e: Exception) {
             Log.e(TAG, "Error handling legacy shortcut", e)
-            showShortToast("Error creating shortcut")
+            showShortToast(getString(R.string.error_creating_shortcut))
             setResult(RESULT_CANCELED)
         }
         
@@ -230,7 +230,7 @@ class PinShortcutActivity : AppCompatActivity() {
                 )
                 
                 if (added) {
-                    showShortToast("Shortcut installed: $shortcutName")
+                    showShortToast(getString(R.string.shortcut_installed_fmt, shortcutName))
                     
                     try {
                         val appsRepo = com.github.gezimos.inkos.data.repository.AppsRepository.getInstance(application)

@@ -142,7 +142,7 @@ fun Context.openBatteryManager() {
         val intent = Intent(Intent.ACTION_POWER_USAGE_SUMMARY)
         this.startActivity(intent)
     } catch (_: ActivityNotFoundException) {
-        showLongToast("Battery manager settings are not available on this device.")
+        showLongToast(getString(com.github.gezimos.inkos.R.string.battery_manager_unavailable))
     }
     CrashHandler.logUserAction("Battery Manager Launched")
 }

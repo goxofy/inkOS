@@ -1343,7 +1343,7 @@ class Prefs(val context: Context) {
         set(value) = prefs.edit { putInt(LETTERS_TEXT_SIZE, value) }
 
     var lettersTitle: String
-        get() = prefs.getString(LETTERS_TITLE, "Letters") ?: "Letters"
+        get() = prefs.getString(LETTERS_TITLE, null) ?: context.getString(R.string.letters_screen_title)
         set(value) = prefs.edit { putString(LETTERS_TITLE, value) }
 
     var lettersTitleFont: Constants.FontFamily

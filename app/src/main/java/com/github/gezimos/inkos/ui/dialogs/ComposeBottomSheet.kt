@@ -2040,7 +2040,7 @@ fun ColorPickerSheet(
 
 @Composable
 fun PrivacyPolicySheet(onDismiss: () -> Unit) {
-    SheetTitle("Privacy Policy")
+    SheetTitle(stringResource(R.string.privacy_policy))
     Box(modifier = Modifier.fillMaxWidth().height(300.dp)) {
         LazyColumn {
             item {
@@ -2087,7 +2087,7 @@ fun FontLicenseSheet(onDismiss: () -> Unit) {
 
 @Composable
 fun GestureVsPageConflictSheet(onDismiss: () -> Unit) {
-    SheetTitle("Gesture vs page conflict")
+    SheetTitle(stringResource(R.string.gesture_vs_page_conflict))
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -2095,17 +2095,17 @@ fun GestureVsPageConflictSheet(onDismiss: () -> Unit) {
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         Text(
-            text = "By default if you have multiple pages of apps in home, the swipe up/down will require long swipes.",
+            text = stringResource(R.string.gesture_conflict_line1),
             style = SettingsTheme.typography.item,
             color = Theme.colors.text
         )
         Text(
-            text = "If you have only one page of apps, it will require short swipes.",
+            text = stringResource(R.string.gesture_conflict_line2),
             style = SettingsTheme.typography.item,
             color = Theme.colors.text
         )
         Text(
-            text = "So you can choose either way, also below you can adjust the swiping thresholds.",
+            text = stringResource(R.string.gesture_conflict_line3),
             style = SettingsTheme.typography.item,
             color = Theme.colors.text
         )
@@ -2223,7 +2223,7 @@ fun SetWallpaperSheet(
 ) {
     var showAndroidOptions by remember { mutableStateOf(false) }
 
-    SheetTitle("Set wallpaper for")
+    SheetTitle(stringResource(R.string.set_wallpaper_for))
 
     Column(
         verticalArrangement = Arrangement.spacedBy(0.dp),
@@ -2289,7 +2289,7 @@ fun SetWallpaperSheet(
 
 @Composable
 fun InkosWallpaperInfoSheet(onDismiss: () -> Unit) {
-    SheetTitle("What is inkOS Wallpaper?")
+    SheetTitle(stringResource(R.string.what_is_inkos_wallpaper))
     Box(modifier = Modifier.fillMaxWidth()) {
         Text(
             text = stringResource(R.string.inkos_wallpaper_explanation),
@@ -2375,7 +2375,7 @@ fun IconStylePickerSheet(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = "ICON STYLE",
+                text = stringResource(R.string.icon_style).uppercase(),
                 style = SettingsTheme.typography.header,
                 fontWeight = FontWeight.Bold,
                 color = textColor,
@@ -2487,7 +2487,7 @@ fun IconStylePickerSheet(
                             ) {
                                 Icon(
                                     painter = painterResource(R.drawable.ic_foreground),
-                                    contentDescription = "Tinted",
+                                    contentDescription = stringResource(R.string.cd_icon_tinted),
                                     tint = itemFg,
                                     modifier = Modifier.size(previewSize * 0.55f)
                                 )
@@ -2504,7 +2504,7 @@ fun IconStylePickerSheet(
                             ) {
                                 Icon(
                                     painter = painterResource(R.drawable.ic_foreground),
-                                    contentDescription = "Filled",
+                                    contentDescription = stringResource(R.string.cd_icon_filled),
                                     tint = itemBg,
                                     modifier = Modifier.size(previewSize * 0.6f)
                                 )
@@ -2517,7 +2517,7 @@ fun IconStylePickerSheet(
                             ) {
                                 Icon(
                                     painter = painterResource(R.drawable.ic_foreground),
-                                    contentDescription = "Glyph",
+                                    contentDescription = stringResource(R.string.cd_icon_glyph),
                                     tint = itemFg,
                                     modifier = Modifier.size(previewSize * 0.8f)
                                 )
@@ -2565,7 +2565,7 @@ fun IconStylePickerSheet(
     // to this shape, so it's relevant for that mode too.
     if (onShapeSelect != null) {
         Spacer(Modifier.height(12.dp.scaled(screenScale)))
-        SheetTitle("Icon Shape")
+        SheetTitle(stringResource(R.string.icon_shape))
         var shapeIdx by remember(currentIconShape) { mutableIntStateOf(currentIconShape) }
         val shapeOptions = listOf(context.getString(R.string.option_pill) to RoundedCornerShape(50), context.getString(R.string.option_rounded) to RoundedCornerShape(4.dp.scaled(screenScale)), context.getString(R.string.option_square) to RoundedCornerShape(0.dp))
         Row(
@@ -2630,7 +2630,7 @@ fun ShortcutIconPickerSheet(
     val icons = Constants.ShortcutIcon.entries
     var selectedIdx by remember { mutableIntStateOf(icons.indexOf(currentIcon).coerceAtLeast(0)) }
 
-    SheetTitle("Shortcut Icon")
+    SheetTitle(stringResource(R.string.shortcut_icon))
     val spacing = 12.dp.scaled(screenScale)
     val minCardWidth = 70.dp.scaled(screenScale)
     BoxWithConstraints(modifier = Modifier.fillMaxWidth()) {
@@ -2783,7 +2783,7 @@ fun SearchFoldersSheet(
             .padding(horizontal = 24.dp.scaled(rememberScreenScale()), vertical = 16.dp)
     ) {
         Text(
-            "Search Folders",
+            stringResource(R.string.search_folders),
             style = SettingsTheme.typography.title,
             color = SettingsTheme.typography.title.color
         )
@@ -2829,7 +2829,7 @@ fun SearchFoldersSheet(
 
         Spacer(modifier = Modifier.height(8.dp))
         Text(
-            "+ Add folder",
+            "+ " + stringResource(R.string.add_folder),
             style = SettingsTheme.typography.title,
             color = SettingsTheme.typography.title.color,
             modifier = Modifier
@@ -2882,7 +2882,7 @@ fun ThemeConfigSheet(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "THEME CONFIG",
+                    text = stringResource(R.string.theme_config).uppercase(),
                     style = SettingsTheme.typography.header,
                     fontWeight = FontWeight.Bold,
                     color = textColor,
@@ -2978,7 +2978,7 @@ fun BadgeIndicatorPickerSheet(
     val indicators = Constants.NotificationIndicator.entries
     var selectedIdx by remember { mutableIntStateOf(indicators.indexOf(currentIndicator).coerceAtLeast(0)) }
 
-    SheetTitle("Badge Indicator")
+    SheetTitle(stringResource(R.string.badge_indicator))
     val spacing = 12.dp.scaled(screenScale)
     val minCardWidth = 70.dp.scaled(screenScale)
     BoxWithConstraints(modifier = Modifier.fillMaxWidth()) {
@@ -3023,7 +3023,13 @@ fun BadgeIndicatorPickerSheet(
                     }
                     Spacer(Modifier.height(6.dp.scaled(screenScale)))
                     Text(
-                        text = indicator.label,
+                        text = when (indicator) {
+                            Constants.NotificationIndicator.Asterisk -> stringResource(R.string.badge_label_asterisk)
+                            Constants.NotificationIndicator.FilledCircle -> stringResource(R.string.badge_label_filled_circle)
+                            Constants.NotificationIndicator.OutlineCircle -> stringResource(R.string.badge_label_outline_circle)
+                            Constants.NotificationIndicator.FilledDiamond -> stringResource(R.string.badge_label_filled_diamond)
+                            Constants.NotificationIndicator.FilledSquare -> stringResource(R.string.badge_label_filled_square)
+                        },
                         style = SettingsTheme.typography.item,
                         color = fg,
                         fontSize = (11 * screenScale).sp,

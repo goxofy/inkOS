@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.github.gezimos.inkos.R
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import com.github.gezimos.inkos.ui.compose.inkOsSafeDrawingPadding
@@ -74,7 +75,7 @@ class WallpaperFragment : Fragment() {
                                     val intent = android.content.Intent(android.content.Intent.ACTION_SET_WALLPAPER)
                                     startActivity(intent)
                                 } catch (e: Exception) {
-                                    android.widget.Toast.makeText(context, "Wallpaper settings not available", android.widget.Toast.LENGTH_SHORT).show()
+                                    android.widget.Toast.makeText(context, context.getString(R.string.wallpaper_settings_not_available), android.widget.Toast.LENGTH_SHORT).show()
                                 }
                             },
                             onWallpaperSet = {

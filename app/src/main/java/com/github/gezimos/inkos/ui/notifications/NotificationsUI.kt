@@ -341,20 +341,20 @@ internal fun convertSbnToHubConversationNotification(
         conversationTitle = appLabel
         sender = appLabel
         finalMessage = when (sbn.notification.category) {
-            Notification.CATEGORY_MESSAGE -> "New message"
-            Notification.CATEGORY_EMAIL -> "New email"
-            Notification.CATEGORY_CALL -> "Missed call"
-            Notification.CATEGORY_ALARM -> "Alarm"
-            Notification.CATEGORY_REMINDER -> "Reminder"
-            Notification.CATEGORY_EVENT -> "Event"
-            Notification.CATEGORY_PROMO -> "Promotion"
-            Notification.CATEGORY_SYSTEM -> "System notification"
-            Notification.CATEGORY_SERVICE -> "Service notification"
-            Notification.CATEGORY_ERROR -> "Error"
-            Notification.CATEGORY_PROGRESS -> "Progress update"
-            Notification.CATEGORY_SOCIAL -> "Social update"
-            Notification.CATEGORY_STATUS -> "Status update"
-            Notification.CATEGORY_RECOMMENDATION -> "Recommendation"
+            Notification.CATEGORY_MESSAGE -> ctx.getString(R.string.notif_fallback_message)
+            Notification.CATEGORY_EMAIL -> ctx.getString(R.string.notif_fallback_email)
+            Notification.CATEGORY_CALL -> ctx.getString(R.string.notif_fallback_call)
+            Notification.CATEGORY_ALARM -> ctx.getString(R.string.notif_fallback_alarm)
+            Notification.CATEGORY_REMINDER -> ctx.getString(R.string.notif_fallback_reminder)
+            Notification.CATEGORY_EVENT -> ctx.getString(R.string.notif_fallback_event)
+            Notification.CATEGORY_PROMO -> ctx.getString(R.string.notif_fallback_promo)
+            Notification.CATEGORY_SYSTEM -> ctx.getString(R.string.notif_fallback_system)
+            Notification.CATEGORY_SERVICE -> ctx.getString(R.string.notif_fallback_service)
+            Notification.CATEGORY_ERROR -> ctx.getString(R.string.notif_fallback_error)
+            Notification.CATEGORY_PROGRESS -> ctx.getString(R.string.notif_fallback_progress)
+            Notification.CATEGORY_SOCIAL -> ctx.getString(R.string.notif_fallback_social)
+            Notification.CATEGORY_STATUS -> ctx.getString(R.string.notif_fallback_status)
+            Notification.CATEGORY_RECOMMENDATION -> ctx.getString(R.string.notif_fallback_recommendation)
             else -> null
         }
     }
@@ -1373,21 +1373,21 @@ internal fun convertSbnToSimpleTrayConversationNotification(
         conversationTitle = appLabel
         sender = appLabel
         finalMessage = when (sbn.notification.category) {
-            Notification.CATEGORY_MESSAGE -> "New message"
-            Notification.CATEGORY_EMAIL -> "New email"
-            Notification.CATEGORY_CALL -> "Missed call"
-            Notification.CATEGORY_ALARM -> "Alarm"
-            Notification.CATEGORY_REMINDER -> "Reminder"
-            Notification.CATEGORY_EVENT -> "Event"
-            Notification.CATEGORY_PROMO -> "Promotion"
-            Notification.CATEGORY_TRANSPORT -> "Media playing"
-            Notification.CATEGORY_SYSTEM -> "System notification"
-            Notification.CATEGORY_SERVICE -> "Service notification"
-            Notification.CATEGORY_ERROR -> "Error"
-            Notification.CATEGORY_PROGRESS -> "Progress update"
-            Notification.CATEGORY_SOCIAL -> "Social update"
-            Notification.CATEGORY_STATUS -> "Status update"
-            Notification.CATEGORY_RECOMMENDATION -> "Recommendation"
+            Notification.CATEGORY_MESSAGE -> ctx.getString(R.string.notif_fallback_message)
+            Notification.CATEGORY_EMAIL -> ctx.getString(R.string.notif_fallback_email)
+            Notification.CATEGORY_CALL -> ctx.getString(R.string.notif_fallback_call)
+            Notification.CATEGORY_ALARM -> ctx.getString(R.string.notif_fallback_alarm)
+            Notification.CATEGORY_REMINDER -> ctx.getString(R.string.notif_fallback_reminder)
+            Notification.CATEGORY_EVENT -> ctx.getString(R.string.notif_fallback_event)
+            Notification.CATEGORY_PROMO -> ctx.getString(R.string.notif_fallback_promo)
+            Notification.CATEGORY_TRANSPORT -> ctx.getString(R.string.notif_fallback_transport)
+            Notification.CATEGORY_SYSTEM -> ctx.getString(R.string.notif_fallback_system)
+            Notification.CATEGORY_SERVICE -> ctx.getString(R.string.notif_fallback_service)
+            Notification.CATEGORY_ERROR -> ctx.getString(R.string.notif_fallback_error)
+            Notification.CATEGORY_PROGRESS -> ctx.getString(R.string.notif_fallback_progress)
+            Notification.CATEGORY_SOCIAL -> ctx.getString(R.string.notif_fallback_social)
+            Notification.CATEGORY_STATUS -> ctx.getString(R.string.notif_fallback_status)
+            Notification.CATEGORY_RECOMMENDATION -> ctx.getString(R.string.notif_fallback_recommendation)
             else -> null
         }
     }
@@ -1487,7 +1487,7 @@ fun SimpleTrayScreen(
                 val mediaNotif = NotificationManager.ConversationNotification(
                     conversationId = "media_${player.packageName}",
                     conversationTitle = null,
-                    sender = player.title ?: "Media playing",
+                    sender = player.title ?: ctx.getString(R.string.notif_fallback_transport),
                     message = player.artist,
                     timestamp = System.currentTimeMillis(),
                     category = Notification.CATEGORY_TRANSPORT,
@@ -2666,7 +2666,7 @@ private fun BottomNavigationBar(
         ) {
             Icon(
                 imageVector = Icons.Rounded.Home,
-                contentDescription = "Home",
+                contentDescription = stringResource(R.string.cd_home),
                 tint = Theme.colors.text,
                 modifier = Modifier.size(24.dp.scaled(screenScale))
             )
@@ -2714,7 +2714,7 @@ private fun BottomNavigationBar(
         ) {
             Icon(
                 imageVector = Icons.Rounded.Settings,
-                contentDescription = "Settings",
+                contentDescription = stringResource(R.string.settings_name),
                 tint = Theme.colors.text,
                 modifier = Modifier.size(24.dp.scaled(screenScale))
             )
@@ -2742,7 +2742,7 @@ private fun SimpleTrayClearAllRow(
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
-            text = "Clear All",
+            text = stringResource(R.string.hub_clear_all),
             color = textColor,
             fontSize = prefs.notificationsTextSize.sp.scaled(screenScale),
             fontWeight = FontWeight.Bold,
@@ -3032,7 +3032,7 @@ private fun NotificationCardItem(
                     if (isMediaNotification && mediaController != null) {
                         Icon(
                             imageVector = Icons.Rounded.SkipPrevious,
-                            contentDescription = "Previous",
+                            contentDescription = stringResource(R.string.cd_previous),
                             tint = Theme.colors.text,
                             modifier = Modifier
                                 .size(24.dp)
@@ -3055,7 +3055,7 @@ private fun NotificationCardItem(
                         )
                         Icon(
                             imageVector = Icons.Rounded.SkipNext,
-                            contentDescription = "Next",
+                            contentDescription = stringResource(R.string.cd_next),
                             tint = Theme.colors.text,
                             modifier = Modifier
                                 .size(24.dp)
@@ -3066,7 +3066,7 @@ private fun NotificationCardItem(
                     }
                     Icon(
                         imageVector = Icons.Rounded.Settings,
-                        contentDescription = "Notification settings",
+                        contentDescription = stringResource(R.string.cd_notification_settings),
                         tint = Theme.colors.text,
                         modifier = Modifier
                             .size(16.dp)

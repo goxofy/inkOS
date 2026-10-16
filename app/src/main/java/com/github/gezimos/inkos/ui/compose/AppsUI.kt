@@ -145,7 +145,7 @@ fun AppsDrawerLayout(
     val iconHeight: Dp = remember(uiState.appDrawerSize, appFontFamily, screenScale, density) {
         try {
             val measuredHeight = textMeasurer.measure(
-                text = AnnotatedString("Ag"),
+                text = AnnotatedString("Ag汉"),
                 style = TextStyle(fontSize = uiState.appDrawerSize.sp.scaled(screenScale), fontFamily = appFontFamily)
             ).size.height
             with(density) { measuredHeight.toDp() }
@@ -164,10 +164,10 @@ fun AppsDrawerLayout(
     if (state.flag == com.github.gezimos.inkos.data.Constants.AppDrawerFlag.EditFavorites) {
         OneTimeTooltip(
             key = "tooltip_edit_favorites_shown",
-            title = "Edit Favorites",
+            title = stringResource(R.string.edit_favorites),
             lines = listOf(
-                "Tap the numbers on top to change the number of apps/pages.",
-                "Drag the = icon to re-order apps."
+                stringResource(R.string.tooltip_edit_favorites_line1),
+                stringResource(R.string.tooltip_edit_favorites_line2)
             )
         )
     }
@@ -175,9 +175,9 @@ fun AppsDrawerLayout(
     if (state.flag == com.github.gezimos.inkos.data.Constants.AppDrawerFlag.HiddenApps) {
         OneTimeTooltip(
             key = "tooltip_hidden_apps_shown",
-            title = "Hidden Apps",
+            title = stringResource(R.string.settings_hidden_apps_title),
             lines = listOf(
-                "Tap the title to multi-select apps to hide or unhide."
+                stringResource(R.string.tooltip_hidden_apps_line)
             )
         )
     }
@@ -185,9 +185,9 @@ fun AppsDrawerLayout(
     if (state.flag == com.github.gezimos.inkos.data.Constants.AppDrawerFlag.EditHiddenApps) {
         OneTimeTooltip(
             key = "tooltip_edit_hidden_apps_shown",
-            title = "Hide Apps",
+            title = stringResource(R.string.hide_apps_title),
             lines = listOf(
-                "Tap apps to hide or unhide them, then tap Done."
+                stringResource(R.string.tooltip_edit_hidden_line)
             )
         )
     }
@@ -210,7 +210,7 @@ fun AppsDrawerLayout(
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
-                        text = "Calculating...",
+                        text = stringResource(R.string.calculating),
                         color = Theme.colors.text,
                         fontSize = uiState.appDrawerSize.sp.scaled(screenScale),
                         fontFamily = appFontFamily
@@ -222,7 +222,7 @@ fun AppsDrawerLayout(
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
-                        text = if (isSearchActive) "No apps found" else "No apps available",
+                        text = if (isSearchActive) stringResource(R.string.apps_no_found) else stringResource(R.string.apps_no_available),
                         color = Theme.colors.text,
                         fontSize = uiState.appDrawerSize.sp.scaled(screenScale),
                         fontFamily = appFontFamily
@@ -310,7 +310,7 @@ fun AppsDrawerLayout(
                                         ) {
                                             Icon(
                                                 imageVector = Icons.Rounded.Edit,
-                                                contentDescription = "Edit hidden apps",
+                                                contentDescription = stringResource(R.string.cd_edit_hidden_apps),
                                                 tint = editIconTint,
                                                 modifier = Modifier.size(with(density) { uiState.appDrawerSize.sp.scaled(screenScale).toDp() })
                                             )
@@ -319,7 +319,7 @@ fun AppsDrawerLayout(
                                     // Right-aligned: Done / edit icon on left
                                     if (hasDone && isRightAlignedTitle) {
                                         Text(
-                                            text = "Done",
+                                            text = stringResource(R.string.done),
                                             color = doneTextColor,
                                             fontSize = uiState.appDrawerSize.sp.scaled(screenScale),
                                             maxLines = 1,
@@ -353,7 +353,7 @@ fun AppsDrawerLayout(
                                     // Left/center: Done on right
                                     if (hasDone && !isRightAlignedTitle) {
                                         Text(
-                                            text = "Done",
+                                            text = stringResource(R.string.done),
                                             color = doneTextColor,
                                             fontSize = uiState.appDrawerSize.sp.scaled(screenScale),
                                             maxLines = 1,
@@ -489,7 +489,7 @@ fun AppsDrawerLayout(
                                     modifier = sepMod
                                 )
                             } else {
-                                AppPlaceholderItem(uiState = uiState, appFontFamily = appFontFamily, isLastItem = index == paddedDisplayApps.lastIndex)
+                                AppPlaceholderItem(uiState = uiState, appFontFamily = appFontFamily, isLastItem = index == paddedDisplayApps.lastIndex, rowHeight = iconHeight)
                             }
                         }
                     }
@@ -1048,7 +1048,7 @@ fun AppItem(
                         ) {
                             Icon(
                                 imageVector = Icons.Rounded.DragHandle,
-                                contentDescription = "Drag to reorder",
+                                contentDescription = stringResource(R.string.cd_drag_to_reorder),
                                 tint = if (isDpadGrabbed) bgColor else textColor,
                                 modifier = Modifier.size(handleSize * 0.8f)
                             )
@@ -1060,7 +1060,7 @@ fun AppItem(
                         val checkboxSize = uiState.appDrawerSize.dp.coerceAtLeast(20.dp)
                         Icon(
                             imageVector = if (isFavoriteChecked) Icons.Rounded.CheckBox else Icons.Rounded.CheckBoxOutlineBlank,
-                            contentDescription = if (isFavoriteChecked) "Selected" else "Not selected",
+                            contentDescription = if (isFavoriteChecked) stringResource(R.string.cd_selected) else stringResource(R.string.cd_not_selected),
                             tint = textColor,
                             modifier = Modifier
                                 .size(checkboxSize)
@@ -1133,11 +1133,13 @@ fun AppItem(
                     ) {
                         Text(
                             text = labelWithCloneIndicator,
-                            color = if (isSelected && isDpadMode) invertedHighlightTextColor else textColor,
-                            fontSize = uiState.appDrawerSize.sp.scaled(screenScale),
+                            style = TextStyle(
+                                color = if (isSelected && isDpadMode) invertedHighlightTextColor else textColor,
+                                fontSize = uiState.appDrawerSize.sp.scaled(screenScale),
+                                fontFamily = appFontFamily
+                            ),
                             maxLines = 1,
-                            overflow = TextOverflow.Ellipsis,
-                            fontFamily = appFontFamily
+                            overflow = TextOverflow.Ellipsis
                         )
                     }
                     // Drawer icon right
@@ -1183,7 +1185,7 @@ fun AppItem(
                         val checkboxSize = uiState.appDrawerSize.dp.coerceAtLeast(20.dp)
                         Icon(
                             imageVector = if (isFavoriteChecked) Icons.Rounded.CheckBox else Icons.Rounded.CheckBoxOutlineBlank,
-                            contentDescription = if (isFavoriteChecked) "Selected" else "Not selected",
+                            contentDescription = if (isFavoriteChecked) stringResource(R.string.cd_selected) else stringResource(R.string.cd_not_selected),
                             tint = textColor,
                             modifier = Modifier
                                 .size(checkboxSize)
@@ -1193,7 +1195,7 @@ fun AppItem(
                     if (isNewlyInstalled && !isSelectionMode) {
                         Icon(
                             imageVector = Icons.Rounded.AutoAwesome,
-                            contentDescription = "Newly installed",
+                            contentDescription = stringResource(R.string.cd_newly_installed),
                             tint = if (isSelected && isDpadMode) invertedHighlightTextColor else textColor,
                             modifier = Modifier.size((uiState.appDrawerSize * 0.8f).dp)
                         )
@@ -1239,7 +1241,7 @@ fun AppItem(
                         ) {
                             Icon(
                                 imageVector = Icons.Rounded.DragHandle,
-                                contentDescription = "Drag to reorder",
+                                contentDescription = stringResource(R.string.cd_drag_to_reorder),
                                 tint = if (isDpadGrabbed) bgColor else textColor,
                                 modifier = Modifier.size(handleSize * 0.8f)
                             )
@@ -1483,7 +1485,7 @@ fun AppContextMenuSheet(
     }
 }
 @Composable
-fun AppPlaceholderItem(uiState: AppsDrawerUiState, appFontFamily: FontFamily = FontFamily.Default, isLastItem: Boolean = false) {
+fun AppPlaceholderItem(uiState: AppsDrawerUiState, appFontFamily: FontFamily = FontFamily.Default, isLastItem: Boolean = false, rowHeight: Dp = 0.dp) {
     val screenScale = rememberScreenScale()
     val boxAlignment = when (uiState.appDrawerAlignment) {
         1 -> Alignment.Center
@@ -1502,16 +1504,19 @@ fun AppPlaceholderItem(uiState: AppsDrawerUiState, appFontFamily: FontFamily = F
                     Modifier
                 }
             )
-            .padding(top = uiState.appDrawerGap.dp, bottom = uiState.appDrawerGap.dp),
+            .padding(top = uiState.appDrawerGap.dp, bottom = uiState.appDrawerGap.dp)
+            .then(if (rowHeight > 0.dp) Modifier.height(rowHeight) else Modifier),
         contentAlignment = boxAlignment
     ) {
         Text(
-            text = "placeholder",
-            color = Color.Transparent,
-            fontSize = uiState.appDrawerSize.sp.scaled(screenScale),
+            text = "Ag汉",
+            style = TextStyle(
+                color = Color.Transparent,
+                fontSize = uiState.appDrawerSize.sp.scaled(screenScale),
+                fontFamily = appFontFamily
+            ),
             maxLines = 1,
-            overflow = TextOverflow.Ellipsis,
-            fontFamily = appFontFamily
+            overflow = TextOverflow.Ellipsis
         )
     }
 }

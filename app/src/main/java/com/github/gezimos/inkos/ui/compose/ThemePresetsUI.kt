@@ -2,6 +2,7 @@ package com.github.gezimos.inkos.ui.compose
 
 import android.app.Activity
 import android.graphics.Color as AndroidColor
+import androidx.compose.ui.res.stringResource
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -213,7 +214,7 @@ fun ThemePresetPicker(
                 prefs.inkosWallpaperResourceId = 0
             }
         }
-        android.widget.Toast.makeText(context, "Theme applied", android.widget.Toast.LENGTH_SHORT).show()
+        android.widget.Toast.makeText(context, context.getString(R.string.theme_applied), android.widget.Toast.LENGTH_SHORT).show()
         onConfirmSelect?.invoke()
     }
 
@@ -378,7 +379,7 @@ fun ThemePresetPicker(
                     if (safeIndex > 0) {
                         Icon(
                             imageVector = Icons.Rounded.ChevronLeft,
-                            contentDescription = "Previous theme",
+                            contentDescription = stringResource(R.string.cd_previous_theme),
                             tint = Theme.colors.text,
                             modifier = Modifier.size(24.dp.scaled(screenScale))
                         )
@@ -463,7 +464,7 @@ fun ThemePresetPicker(
                     if (safeIndex < presets.lastIndex) {
                         Icon(
                             imageVector = Icons.Rounded.ChevronRight,
-                            contentDescription = "Next theme",
+                            contentDescription = stringResource(R.string.cd_next_theme),
                             tint = Theme.colors.text,
                             modifier = Modifier.size(24.dp.scaled(screenScale))
                         )
@@ -499,7 +500,7 @@ fun ThemePresetPicker(
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
-                        text = "CONFIG",
+                        text = stringResource(R.string.theme_preset_config),
                         style = SettingsTheme.typography.title,
                         fontSize = titleFontSize,
                         fontWeight = FontWeight.Bold,
@@ -549,7 +550,7 @@ fun ThemePresetPicker(
                         contentAlignment = Alignment.Center
                     ) {
                         Text(
-                            text = "APPLY",
+                            text = stringResource(R.string.theme_preset_apply),
                             style = SettingsTheme.typography.title,
                             fontSize = titleFontSize,
                             fontWeight = FontWeight.Bold,
@@ -746,7 +747,7 @@ fun ThemePresetsPage(
                         // Mono toggle
                         val monoActive = einkMode.value
                         Text(
-                            text = "Mono",
+                            text = stringResource(R.string.onboarding_mono),
                             style = SettingsTheme.typography.title,
                             fontSize = titleFontSize,
                             color = if (monoActive || monoHighlighted) prefBackgroundColor else prefTextColor,

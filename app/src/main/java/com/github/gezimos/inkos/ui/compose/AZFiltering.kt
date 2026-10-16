@@ -24,6 +24,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Shield
 import androidx.compose.material3.Icon
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.graphics.ColorFilter
 import com.github.gezimos.inkos.style.Theme
 import com.github.gezimos.inkos.R
@@ -134,7 +135,7 @@ fun AZSidebar(
                     ) {
                         Icon(
                             imageVector = Icons.Rounded.Shield,
-                            contentDescription = "private space",
+                            contentDescription = stringResource(R.string.private_space),
                             modifier = Modifier.size(indicatorHeight.times(0.6f)),
                             tint = Theme.colors.background
                         )
@@ -146,7 +147,7 @@ fun AZSidebar(
                     ) {
                         Icon(
                             imageVector = Icons.Rounded.Shield,
-                            contentDescription = "private space",
+                            contentDescription = stringResource(R.string.private_space),
                             modifier = Modifier.size(indicatorHeight.times(0.5f)),
                             tint = appTextColor
                         )
@@ -218,7 +219,7 @@ fun AZSidebar(
                                     if (ch == '★') {
                                         Image(
                                             painter = painterResource(R.drawable.ic_foreground),
-                                            contentDescription = "star",
+                                            contentDescription = stringResource(R.string.cd_star),
                                             modifier = Modifier.size(indicatorHeight.times(0.5f)),
                                             colorFilter = ColorFilter.tint(letterColor)
                                         )
@@ -238,7 +239,7 @@ fun AZSidebar(
                                 if (ch == '★') {
                                     Image(
                                         painter = painterResource(R.drawable.ic_foreground),
-                                        contentDescription = "star",
+                                        contentDescription = stringResource(R.string.cd_star),
                                         modifier = Modifier.size(indicatorHeight.times(0.4f)),
                                         colorFilter = ColorFilter.tint(appTextColor)
                                     )

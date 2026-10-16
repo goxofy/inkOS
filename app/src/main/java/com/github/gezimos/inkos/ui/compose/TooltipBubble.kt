@@ -34,6 +34,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
@@ -43,6 +44,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import com.github.gezimos.inkos.R
 import com.github.gezimos.inkos.data.Prefs
 import com.github.gezimos.inkos.helper.ShapeHelper
 import com.github.gezimos.inkos.style.SettingsTheme
@@ -256,7 +258,7 @@ fun TooltipBubble(
                 ) {
                     Icon(
                         imageVector = Icons.Rounded.Close,
-                        contentDescription = "Close",
+                        contentDescription = stringResource(R.string.em_close),
                         tint = textColor,
                         modifier = Modifier.size(14.dp.scaled(screenScale))
                     )

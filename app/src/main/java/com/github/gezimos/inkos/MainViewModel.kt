@@ -1669,7 +1669,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             val component = ComponentName(packageName, activityInfo.first().name)
             launchAppWithPermissionCheck(component, packageName, userHandle, launcher)
         } else {
-            appContext.showShortToast("App not found")
+            appContext.showShortToast(appContext.getString(R.string.app_not_found))
         }
     }
     
@@ -1698,7 +1698,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 newlyInstalled.remove(packageName)
                 prefs.newlyInstalledApps = newlyInstalled
             } catch (_: Exception) {
-                appContext.showShortToast("Unable to launch shortcut")
+                appContext.showShortToast(appContext.getString(R.string.unable_to_launch_shortcut))
             }
         } catch (e: Exception) {
             android.util.Log.e("MainViewModel", "Failed to launch shortcut: ${e.message}")
@@ -1708,10 +1708,10 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                     val component = ComponentName(packageName, activityInfo.first().name)
                     launchAppWithPermissionCheck(component, packageName, userHandle, launcher)
                 } else {
-                    appContext.showShortToast("Shortcut no longer available")
+                    appContext.showShortToast(appContext.getString(R.string.shortcut_no_longer_available))
                 }
             } catch (_: Exception) {
-                appContext.showShortToast("Unable to launch shortcut")
+                appContext.showShortToast(appContext.getString(R.string.unable_to_launch_shortcut))
             }
         }
     }
@@ -1738,10 +1738,10 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 newlyInstalled.remove(component.packageName)
                 prefs.newlyInstalledApps = newlyInstalled
             } catch (_: Exception) {
-                appContext.showShortToast("Unable to launch app")
+                appContext.showShortToast(appContext.getString(R.string.unable_to_launch_app))
             }
         } catch (_: Exception) {
-            appContext.showShortToast("Unable to launch app")
+            appContext.showShortToast(appContext.getString(R.string.unable_to_launch_app))
         }
     }
 
@@ -1868,7 +1868,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                     try { typeface = prefs.appsFont.getFont(appContext, customFontPath) } catch (_: Exception) {}
                 }
                 val layout = android.text.StaticLayout.Builder
-                    .obtain("Ag", 0, 2, paint, Int.MAX_VALUE)
+                    .obtain("Ag汉", 0, 3, paint, Int.MAX_VALUE)
                     .setIncludePad(false)
                     .build()
                 layout.height.coerceAtLeast(1)

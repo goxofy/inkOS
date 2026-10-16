@@ -13,10 +13,12 @@ import android.provider.MediaStore
 import android.provider.Settings
 import android.view.KeyEvent
 import android.webkit.MimeTypeMap
+import androidx.annotation.StringRes
 import androidx.compose.ui.input.key.Key
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.core.content.ContextCompat
+import com.github.gezimos.inkos.R
 import com.github.gezimos.inkos.data.AppListItem
 import com.github.gezimos.inkos.data.Constants
 import java.text.Normalizer
@@ -301,9 +303,9 @@ object SearchHelper {
     }
 
 
-    fun createWebSearchItem(query: String): AppListItem {
+    fun createWebSearchItem(context: Context, query: String): AppListItem {
         return AppListItem(
-            activityLabel = "Search web for \"$query\"",
+            activityLabel = context.getString(R.string.search_web_for_fmt, query),
             activityPackage = Constants.INTERNAL_WEB_SEARCH,
             activityClass = query,
             user = Process.myUserHandle(),
@@ -707,7 +709,7 @@ object MusicSearchHelper {
             }
             context.startActivity(intent)
         } catch (_: Exception) {
-            android.widget.Toast.makeText(context, "No music player found", android.widget.Toast.LENGTH_SHORT).show()
+            android.widget.Toast.makeText(context, context.getString(R.string.no_music_player_found), android.widget.Toast.LENGTH_SHORT).show()
         }
     }
 }
@@ -829,7 +831,7 @@ object FileSearchHelper {
             }
             context.startActivity(intent)
         } catch (_: Exception) {
-            android.widget.Toast.makeText(context, "No app found to open this file", android.widget.Toast.LENGTH_SHORT).show()
+            android.widget.Toast.makeText(context, context.getString(R.string.no_app_for_file), android.widget.Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -860,72 +862,71 @@ object SettingsSearchHelper {
     private data class SettingsEntry(
         val keywords: List<String>,
         val normalizedKeywords: List<String>,
-        val label: String,
-        val normalizedLabel: String,
+        @StringRes val labelRes: Int,
         val action: String
     )
 
-    /** Build a SettingsEntry with pre-normalized keywords and label (computed once at init). */
-    private fun entry(keywords: List<String>, label: String, action: String) = SettingsEntry(
+    /** Build a SettingsEntry with pre-normalized keywords (computed once at init). */
+    private fun entry(keywords: List<String>, @StringRes labelRes: Int, action: String) = SettingsEntry(
         keywords = keywords,
         normalizedKeywords = keywords.map { SearchHelper.normalizeString(it) },
-        label = label,
-        normalizedLabel = SearchHelper.normalizeString(label),
+        labelRes = labelRes,
         action = action
     )
 
     private val entries = listOf(
-        entry(listOf("wifi", "wlan", "wireless", "network", "internet"), "Wi-Fi", Settings.ACTION_WIFI_SETTINGS),
-        entry(listOf("bluetooth", "bt", "pair"), "Bluetooth", Settings.ACTION_BLUETOOTH_SETTINGS),
-        entry(listOf("airplane", "flight", "aeroplane"), "Airplane Mode", Settings.ACTION_AIRPLANE_MODE_SETTINGS),
-        entry(listOf("data", "mobile", "cellular", "sim", "roaming"), "Mobile Data", Settings.ACTION_DATA_ROAMING_SETTINGS),
-        entry(listOf("vpn"), "VPN", Settings.ACTION_VPN_SETTINGS),
-        entry(listOf("nfc", "tap", "contactless"), "NFC", Settings.ACTION_NFC_SETTINGS),
-        entry(listOf("hotspot", "tethering", "portable"), "Hotspot & Tethering", "android.settings.TETHERING_SETTINGS"),
-        entry(listOf("cast", "miracast", "wireless display", "screen cast"), "Cast", Settings.ACTION_CAST_SETTINGS),
-        entry(listOf("display", "screen", "brightness"), "Display", Settings.ACTION_DISPLAY_SETTINGS),
-        entry(listOf("dpi", "density", "smallest width", "resolution", "scale"), "Display Size & DPI", Settings.ACTION_DISPLAY_SETTINGS),
-        entry(listOf("font", "text size", "font size"), "Font Size", Settings.ACTION_DISPLAY_SETTINGS),
-        entry(listOf("wallpaper", "background", "theme"), "Wallpaper", Intent.ACTION_SET_WALLPAPER),
-        entry(listOf("dark mode", "dark theme", "night mode", "night light"), "Dark Mode", Settings.ACTION_DISPLAY_SETTINGS),
-        entry(listOf("rotation", "auto rotate", "orientation"), "Auto-Rotate", Settings.ACTION_DISPLAY_SETTINGS),
-        entry(listOf("sound", "volume", "ring", "audio", "vibrat"), "Sound", Settings.ACTION_SOUND_SETTINGS),
-        entry(listOf("do not disturb", "dnd", "silent", "quiet"), "Do Not Disturb", Settings.ACTION_ZEN_MODE_PRIORITY_SETTINGS),
-        entry(listOf("battery", "power", "charge", "saver"), "Battery", Settings.ACTION_BATTERY_SAVER_SETTINGS),
-        entry(listOf("storage", "disk", "space", "free"), "Storage", Settings.ACTION_INTERNAL_STORAGE_SETTINGS),
-        entry(listOf("location", "gps"), "Location", Settings.ACTION_LOCATION_SOURCE_SETTINGS),
-        entry(listOf("security", "lock", "password", "pin", "fingerprint", "biometric"), "Security", Settings.ACTION_SECURITY_SETTINGS),
-        entry(listOf("privacy", "permission"), "Privacy", Settings.ACTION_PRIVACY_SETTINGS),
-        entry(listOf("accessibility", "a11y", "talkback", "magnif"), "Accessibility", Settings.ACTION_ACCESSIBILITY_SETTINGS),
-        entry(listOf("language", "locale", "keyboard", "input", "ime"), "Language & Input", Settings.ACTION_INPUT_METHOD_SETTINGS),
-        entry(listOf("date", "time", "clock", "timezone"), "Date & Time", Settings.ACTION_DATE_SETTINGS),
-        entry(listOf("developer", "dev options", "usb debug", "debug", "adb", "oem unlock", "bootloader"), "Developer Options", Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS),
-        entry(listOf("usb", "otg", "connected devices"), "Connected Devices", Settings.ACTION_BLUETOOTH_SETTINGS),
-        entry(listOf("apps", "application", "installed", "manage apps"), "Apps", Settings.ACTION_APPLICATION_SETTINGS),
-        entry(listOf("notification", "alerts", "app notifications"), "App Notifications", "com.android.settings/com.android.settings.Settings\$NotificationAppListActivity"),
-        entry(listOf("default app", "default browser", "default launcher"), "Default Apps", Settings.ACTION_MANAGE_DEFAULT_APPS_SETTINGS),
-        entry(listOf("account", "sync", "google", "email"), "Accounts", Settings.ACTION_SYNC_SETTINGS),
-        entry(listOf("backup", "restore", "reset"), "Backup & Reset", Settings.ACTION_PRIVACY_SETTINGS),
-        entry(listOf("about", "device", "info", "model", "build", "version", "android version"), "About Phone", Settings.ACTION_DEVICE_INFO_SETTINGS),
-        entry(listOf("update", "system update", "software"), "System Update", "android.settings.SYSTEM_UPDATE_SETTINGS"),
-        entry(listOf("memory", "ram", "memory usage"), "Memory Usage", "com.android.settings/com.android.settings.Settings\$AppMemoryUsageActivity"),
-        entry(listOf("notification log", "notification history"), "Notification Log", "com.android.settings/com.android.settings.Settings\$NotificationStationActivity"),
-        entry(listOf("sim lock", "sim pin", "sim card lock"), "SIM Lock", "com.android.settings/com.android.settings.Settings\$IccLockSettingsActivity"),
-        entry(listOf("battery optimization", "battery exempt", "doze", "whitelist"), "Battery Optimization", "com.android.settings/com.android.settings.Settings\$HighPowerApplicationsActivity"),
-        entry(listOf("data usage", "data consumption", "bandwidth"), "Data Usage", "com.android.settings/com.android.settings.Settings\$DataUsageSummaryActivity"),
-        entry(listOf("mobile network", "network operator", "carrier", "apn"), "Mobile Network", "com.android.settings/com.android.settings.network.telephony.MobileNetworkActivity"),
-        entry(listOf("storage manager", "free up space", "cleanup", "deletion helper"), "Storage Manager", "com.android.storagemanager/com.android.storagemanager.deletionhelper.DeletionHelperActivity"),
-        entry(listOf("brightness dialog", "brightness slider", "brightness control"), "Brightness Dialog", "com.android.systemui/com.android.systemui.settings.brightness.BrightnessDialog"),
-        entry(listOf("vision", "vision settings", "low vision", "screen reader"), "Vision Settings", "com.android.settings/com.android.settings.accessibility.AccessibilitySettingsForSetupWizardActivity"),
-        entry(listOf("settings search", "search settings", "find setting"), "Settings Search", "android.settings.APP_SEARCH_SETTINGS"),
-        entry(listOf("settings"), "Settings", Settings.ACTION_SETTINGS)
+        entry(listOf("wifi", "wlan", "wireless", "network", "internet", "无线", "网络", "互联网"), R.string.settings_entry_wifi, Settings.ACTION_WIFI_SETTINGS),
+        entry(listOf("bluetooth", "bt", "pair", "蓝牙", "配对"), R.string.settings_entry_bluetooth, Settings.ACTION_BLUETOOTH_SETTINGS),
+        entry(listOf("airplane", "flight", "aeroplane", "飞行模式", "飞行"), R.string.settings_entry_airplane, Settings.ACTION_AIRPLANE_MODE_SETTINGS),
+        entry(listOf("data", "mobile", "cellular", "sim", "roaming", "移动数据", "流量", "蜂窝", "漫游"), R.string.settings_entry_mobile_data, Settings.ACTION_DATA_ROAMING_SETTINGS),
+        entry(listOf("vpn", "虚拟专用网络"), R.string.settings_entry_vpn, Settings.ACTION_VPN_SETTINGS),
+        entry(listOf("nfc", "tap", "contactless", "近场通信"), R.string.settings_entry_nfc, Settings.ACTION_NFC_SETTINGS),
+        entry(listOf("hotspot", "tethering", "portable", "热点", "网络共享"), R.string.settings_entry_hotspot, "android.settings.TETHERING_SETTINGS"),
+        entry(listOf("cast", "miracast", "wireless display", "screen cast", "投屏", "投射", "无线显示"), R.string.settings_entry_cast, Settings.ACTION_CAST_SETTINGS),
+        entry(listOf("display", "screen", "brightness", "显示", "屏幕", "亮度"), R.string.settings_entry_display, Settings.ACTION_DISPLAY_SETTINGS),
+        entry(listOf("dpi", "density", "smallest width", "resolution", "scale", "显示大小", "密度", "分辨率", "缩放"), R.string.settings_entry_display_size, Settings.ACTION_DISPLAY_SETTINGS),
+        entry(listOf("font", "text size", "font size", "字体", "字号", "文字大小"), R.string.settings_entry_font_size, Settings.ACTION_DISPLAY_SETTINGS),
+        entry(listOf("wallpaper", "background", "theme", "壁纸", "背景", "主题"), R.string.settings_entry_wallpaper, Intent.ACTION_SET_WALLPAPER),
+        entry(listOf("dark mode", "dark theme", "night mode", "night light", "深色模式", "深色主题", "夜间模式"), R.string.settings_entry_dark_mode, Settings.ACTION_DISPLAY_SETTINGS),
+        entry(listOf("rotation", "auto rotate", "orientation", "旋转", "自动旋转", "方向"), R.string.settings_entry_auto_rotate, Settings.ACTION_DISPLAY_SETTINGS),
+        entry(listOf("sound", "volume", "ring", "audio", "vibrat", "声音", "音量", "铃声", "振动", "音频"), R.string.settings_entry_sound, Settings.ACTION_SOUND_SETTINGS),
+        entry(listOf("do not disturb", "dnd", "silent", "quiet", "勿扰", "免打扰", "静音"), R.string.settings_entry_dnd, Settings.ACTION_ZEN_MODE_PRIORITY_SETTINGS),
+        entry(listOf("battery", "power", "charge", "saver", "电池", "电量", "省电", "充电"), R.string.settings_entry_battery, Settings.ACTION_BATTERY_SAVER_SETTINGS),
+        entry(listOf("storage", "disk", "space", "free", "存储", "空间", "磁盘"), R.string.settings_entry_storage, Settings.ACTION_INTERNAL_STORAGE_SETTINGS),
+        entry(listOf("location", "gps", "定位", "位置"), R.string.settings_entry_location, Settings.ACTION_LOCATION_SOURCE_SETTINGS),
+        entry(listOf("security", "lock", "password", "pin", "fingerprint", "biometric", "安全", "锁屏", "密码", "指纹", "生物识别"), R.string.settings_entry_security, Settings.ACTION_SECURITY_SETTINGS),
+        entry(listOf("privacy", "permission", "隐私", "权限"), R.string.settings_entry_privacy, Settings.ACTION_PRIVACY_SETTINGS),
+        entry(listOf("accessibility", "a11y", "talkback", "magnif", "无障碍", "辅助功能"), R.string.settings_entry_accessibility, Settings.ACTION_ACCESSIBILITY_SETTINGS),
+        entry(listOf("language", "locale", "keyboard", "input", "ime", "语言", "输入法", "键盘", "输入"), R.string.settings_entry_language_input, Settings.ACTION_INPUT_METHOD_SETTINGS),
+        entry(listOf("date", "time", "clock", "timezone", "日期", "时间", "时钟", "时区"), R.string.settings_entry_date_time, Settings.ACTION_DATE_SETTINGS),
+        entry(listOf("developer", "dev options", "usb debug", "debug", "adb", "oem unlock", "bootloader", "开发者选项", "开发者", "调试"), R.string.settings_entry_developer, Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS),
+        entry(listOf("usb", "otg", "connected devices", "已连接设备", "连接设备"), R.string.settings_entry_connected_devices, Settings.ACTION_BLUETOOTH_SETTINGS),
+        entry(listOf("apps", "application", "installed", "manage apps", "应用", "应用程序", "已安装"), R.string.settings_entry_apps, Settings.ACTION_APPLICATION_SETTINGS),
+        entry(listOf("notification", "alerts", "app notifications", "通知", "应用通知", "提醒"), R.string.settings_entry_app_notifications, "com.android.settings/com.android.settings.Settings\$NotificationAppListActivity"),
+        entry(listOf("default app", "default browser", "default launcher", "默认应用", "默认浏览器", "默认启动器"), R.string.settings_entry_default_apps, Settings.ACTION_MANAGE_DEFAULT_APPS_SETTINGS),
+        entry(listOf("account", "sync", "google", "email", "账户", "同步", "邮箱"), R.string.settings_entry_accounts, Settings.ACTION_SYNC_SETTINGS),
+        entry(listOf("backup", "restore", "reset", "备份", "恢复", "重置", "还原"), R.string.settings_entry_backup_reset, Settings.ACTION_PRIVACY_SETTINGS),
+        entry(listOf("about", "device", "info", "model", "build", "version", "android version", "关于手机", "设备信息", "型号", "版本"), R.string.settings_entry_about_phone, Settings.ACTION_DEVICE_INFO_SETTINGS),
+        entry(listOf("update", "system update", "software", "系统更新", "更新", "软件"), R.string.settings_entry_system_update, "android.settings.SYSTEM_UPDATE_SETTINGS"),
+        entry(listOf("memory", "ram", "memory usage", "内存", "内存使用"), R.string.settings_entry_memory_usage, "com.android.settings/com.android.settings.Settings\$AppMemoryUsageActivity"),
+        entry(listOf("notification log", "notification history", "通知日志", "通知历史"), R.string.settings_entry_notification_log, "com.android.settings/com.android.settings.Settings\$NotificationStationActivity"),
+        entry(listOf("sim lock", "sim pin", "sim card lock", "sim 锁", "卡锁"), R.string.settings_entry_sim_lock, "com.android.settings/com.android.settings.Settings\$IccLockSettingsActivity"),
+        entry(listOf("battery optimization", "battery exempt", "doze", "whitelist", "电池优化", "省电优化", "白名单"), R.string.settings_entry_battery_optimization, "com.android.settings/com.android.settings.Settings\$HighPowerApplicationsActivity"),
+        entry(listOf("data usage", "data consumption", "bandwidth", "流量使用", "数据用量", "带宽"), R.string.settings_entry_data_usage, "com.android.settings/com.android.settings.Settings\$DataUsageSummaryActivity"),
+        entry(listOf("mobile network", "network operator", "carrier", "apn", "移动网络", "运营商", "接入点"), R.string.settings_entry_mobile_network, "com.android.settings/com.android.settings.network.telephony.MobileNetworkActivity"),
+        entry(listOf("storage manager", "free up space", "cleanup", "deletion helper", "存储管理器", "清理空间", "清理"), R.string.settings_entry_storage_manager, "com.android.storagemanager/com.android.storagemanager.deletionhelper.DeletionHelperActivity"),
+        entry(listOf("brightness dialog", "brightness slider", "brightness control", "亮度对话框", "亮度滑块", "亮度控制"), R.string.settings_entry_brightness_dialog, "com.android.systemui/com.android.systemui.settings.brightness.BrightnessDialog"),
+        entry(listOf("vision", "vision settings", "low vision", "screen reader", "视觉设置", "屏幕阅读器"), R.string.settings_entry_vision, "com.android.settings/com.android.settings.accessibility.AccessibilitySettingsForSetupWizardActivity"),
+        entry(listOf("settings search", "search settings", "find setting", "设置搜索", "搜索设置", "查找设置"), R.string.settings_entry_settings_search, "android.settings.APP_SEARCH_SETTINGS"),
+        entry(listOf("settings", "设置"), R.string.settings_entry_settings, Settings.ACTION_SETTINGS)
     )
 
-    fun search(query: String, limit: Int = 3): List<AppListItem> {
+    fun search(context: Context, query: String, limit: Int = 3): List<AppListItem> {
         if (query.isBlank()) return emptyList()
         val normalizedQuery = SearchHelper.normalizeString(query)
+        val normalizedLabels = entries.map { SearchHelper.normalizeString(context.getString(it.labelRes)) }
         return entries
-            .mapNotNull { entry ->
+            .mapIndexedNotNull { index, entry ->
                 val keywordScore = entry.normalizedKeywords.maxOf { normalizedKw ->
                     maxOf(
                         SearchHelper.scoreStrict(normalizedKw, normalizedQuery, 100),
@@ -933,14 +934,14 @@ object SettingsSearchHelper {
                     )
                 }
                 val labelScore = SearchHelper.scoreStrict(
-                    entry.normalizedLabel, normalizedQuery, 100
+                    normalizedLabels[index], normalizedQuery, 100
                 )
                 val best = maxOf(keywordScore, labelScore)
-                if (best > 0) entry to best else null
+                if (best > 0) Triple(entry, context.getString(entry.labelRes), best) else null
             }
-            .sortedByDescending { it.second }
+            .sortedByDescending { it.third }
             .take(limit)
-            .map { (entry, _) -> createSettingsItem(entry.label, entry.action) }
+            .map { (entry, label, _) -> createSettingsItem(label, entry.action) }
     }
 
     private fun createSettingsItem(label: String, action: String): AppListItem {

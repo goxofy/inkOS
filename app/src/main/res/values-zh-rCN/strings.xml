@@ -1,0 +1,1144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Static shortcut labels -->
+    <string name="shortcut_app_drawer_short">应用抽屉</string>
+    <string name="shortcut_letters_short">信件</string>
+    <string name="shortcut_simple_tray_short">简易托盘</string>
+    <string name="shortcut_hub_short">枢纽</string>
+    <string name="shortcut_recents_short">最近使用</string>
+    <string name="shortcut_settings_short">inkOS 设置</string>
+    <string name="shortcut_tab_apps">应用</string>
+    <string name="shortcut_tab_pinned">已固定</string>
+
+    <!-- Common labels -->
+    <string name="cancel">取消</string>
+    <string name="open">打开</string>
+    <string name="browse">浏览</string>
+    <string name="delete">删除</string>
+    <string name="hide">隐藏</string>
+    <string name="unhide">取消隐藏</string>
+    <string name="show">显示</string>
+    <string name="lock">锁定</string>
+    <string name="unlock">解锁</string>
+    <string name="rename">重命名</string>
+    <string name="info">信息</string>
+    <string name="okay">好的</string>
+    <string name="enabled">已启用</string>
+    <string name="disabled">已禁用</string>
+    <string name="reset">重置</string>
+    <string name="done">完成</string>
+    <string name="search">搜索</string>
+    <string name="left">左</string>
+    <string name="center">居中</string>
+    <string name="right">右</string>
+    <string name="top">上</string>
+    <string name="bottom">下</string>
+    <string name="off">关闭</string>
+    <string name="dark">深色</string>
+    <string name="light">浅色</string>
+    <string name="system_default">系统</string>
+    <string name="select_app">选择应用</string>
+    <string name="brightness">亮度</string>
+    <string name="customizations">自定义</string>
+
+    <!-- Buttons -->
+    <string name="btn_save">保存</string>
+    <string name="btn_ok">确定</string>
+    <string name="btn_copy">复制</string>
+    <string name="select_all">全选</string>
+    <string name="deselect_all">取消全选</string>
+    <string name="btn_paste">粘贴</string>
+    <string name="btn_back">返回</string>
+    <string name="btn_back_arrow">← 返回</string>
+    <string name="btn_back_upper">返回</string>
+    <string name="btn_skip">跳过</string>
+    <string name="btn_select">选择</string>
+    <string name="btn_next">下一步</string>
+    <string name="btn_finish">完成</string>
+    <string name="choose_app">选择应用</string>
+
+    <!-- Content descriptions -->
+    <string name="cd_charging">充电中</string>
+    <string name="cd_notifications">通知</string>
+    <string name="cd_previous_event">上一个日程</string>
+    <string name="cd_next_event">下一个日程</string>
+    <string name="cd_left_shortcut">左侧快捷方式</string>
+    <string name="cd_right_shortcut">右侧快捷方式</string>
+    <string name="cd_edit_widget">编辑小组件</string>
+    <string name="cd_decrease">减少</string>
+    <string name="cd_increase">增加</string>
+    <string name="cd_delete_font">删除字体</string>
+    <string name="cd_font_license">字体许可</string>
+    <string name="cd_remove">移除</string>
+    <string name="cd_add">添加</string>
+    <string name="cd_dismiss">关闭</string>
+
+    <!-- Tab labels -->
+    <string name="tab_style">样式</string>
+    <string name="tab_function">功能</string>
+    <string name="tab_gestures">手势</string>
+    <string name="tab_theme">主题</string>
+    <string name="tab_alignment">对齐</string>
+    <string name="tab_islands_corners">岛屿/圆角</string>
+    <string name="tab_icons">图标</string>
+    <string name="tab_notifications">通知</string>
+    <string name="tab_search">搜索</string>
+    <string name="tab_filtering">过滤</string>
+    <string name="tab_fonts">字体</string>
+    <string name="tab_custom">自定义</string>
+
+    <!-- Settings navigation -->
+    <string name="settings_name">设置</string>
+    <string name="settings_home_title">主屏</string>
+    <string name="settings_look_feel_title">外观</string>
+    <string name="settings_gestures_title">手势</string>
+    <string name="settings_hidden_apps_title">隐藏的应用</string>
+    <string name="settings_advanced_title">高级</string>
+    <string name="settings_exit_inkos_title">退出 inkOS</string>
+    <string name="fonts_settings_title">字体</string>
+    <string name="look_feel_settings_title">外观</string>
+    <string name="gestures_settings_title">手势</string>
+    <string name="notification_section">通知</string>
+    <string name="notification_home">主屏通知</string>
+
+    <!-- Language -->
+    <string name="settings_language">语言</string>
+    <string name="desc_language">应用显示语言</string>
+    <string name="language_system">跟随系统</string>
+    <string name="language_english">English</string>
+    <string name="language_chinese_simplified">简体中文</string>
+
+    <!-- Settings section titles -->
+    <string name="home_management">主屏与应用管理</string>
+    <string name="home_widgets">主屏小组件</string>
+    <string name="top_widgets">顶部小组件</string>
+    <string name="clock_section">时钟</string>
+    <string name="date_row_section">日期栏</string>
+    <string name="bottom_widgets">底部小组件</string>
+    <string name="layout_positioning">布局与定位</string>
+    <string name="visibility_display">可见性与显示</string>
+    <string name="element_colors">颜色</string>
+    <string name="donate">捐赠</string>
+    <string name="community">社区</string>
+    <string name="about">关于</string>
+    <string name="desc_about">鸣谢与支持</string>
+    <string name="tooltip_pinch_settings">在空白区域捏合以打开设置</string>
+    <string name="extra_features">扩展</string>
+    <string name="icons_buttons">图标与按钮</string>
+    <string name="text_islands_section">文字岛</string>
+    <string name="system_section">系统</string>
+    <string name="other_functions">其它功能</string>
+
+    <!-- Edit mode -->
+    <string name="edit_mode">编辑模式</string>
+    <string name="exit_edit_mode">退出编辑模式</string>
+
+    <!-- Home settings -->
+    <string name="home_apps">主屏应用</string>
+    <string name="apps_on_home_screen">主屏应用数量</string>
+    <string name="pages_on_home_screen">页面数量</string>
+    <string name="enable_home_pager">启用页面指示器</string>
+    <string name="home_page_reset">主屏页面重置</string>
+    <string name="lock_home_apps">锁定主屏应用</string>
+    <string name="lock_settings">锁定设置</string>
+    <string name="longpress_app_info">长按查看应用信息</string>
+    <string name="extend_home_apps_area">扩展可点击区域</string>
+    <string name="home_alignment">主屏对齐</string>
+    <string name="home_apps_alignment">主屏应用对齐</string>
+    <string name="home_clock_alignment">时钟对齐</string>
+    <string name="home_date_alignment">日期对齐</string>
+    <string name="home_quote_alignment">小组件对齐</string>
+    <string name="app_size_gap">应用尺寸/间距</string>
+    <string name="nr_apps_pages">应用/页面数量</string>
+    <string name="margin_offset">边距/偏移</string>
+
+    <!-- Clock -->
+    <string name="show_clock">显示时钟</string>
+    <string name="clock_format">时钟格式</string>
+    <string name="clock_style">时钟样式</string>
+    <string name="show_am_pm">显示上午/下午</string>
+    <string name="dual_clocks">双时钟</string>
+    <string name="second_clock_offset">第二时钟时差</string>
+
+    <!-- Date row -->
+    <string name="date_format">日期格式</string>
+    <string name="show_date">日期</string>
+    <string name="show_date_battery_combo">日期 + 电量</string>
+    <string name="show_battery">显示电量</string>
+    <string name="show_notification_count">显示通知数量</string>
+
+    <!-- Bottom widgets -->
+    <string name="bottom_widget">底部小组件</string>
+    <string name="bottom_widget_disabled">已禁用</string>
+    <string name="bottom_widget_quote">语录</string>
+    <string name="bottom_widget_events">日程</string>
+    <string name="bottom_widget_android">Android 小组件</string>
+    <string name="bottom_widget_shortcuts">快捷方式</string>
+    <string name="bottom_widget_total_usage">使用总量</string>
+    <string name="bottom_widget_page_dots">页面圆点</string>
+    <string name="show_quote">显示语录</string>
+    <string name="show_audio_widget">显示音频小组件</string>
+    <string name="show_android_widget">显示 Android 小组件</string>
+    <string name="quote_text">语录文本</string>
+    <string name="shortcut_left_icon">左侧图标</string>
+    <string name="shortcut_left_action">左侧操作</string>
+    <string name="shortcut_right_icon">右侧图标</string>
+    <string name="shortcut_right_action">右侧操作</string>
+    <string name="hide_outline">隐藏轮廓</string>
+
+    <!-- Android widget -->
+    <string name="android_widget_height">小组件高度</string>
+    <string name="android_widget_margin_start">左边距</string>
+    <string name="android_widget_margin_end">右边距</string>
+    <string name="android_widget_alignment">小组件对齐</string>
+    <string name="choose_android_widget">选择小组件</string>
+    <string name="remove_android_widget">移除小组件</string>
+    <string name="loading_widget">正在加载小组件…</string>
+
+    <!-- Calendar events -->
+    <string name="events_grant_permission">授予权限</string>
+    <string name="events_grant_permission_subtitle">以访问日历日程</string>
+    <string name="events_choose_calendar">选择日历</string>
+    <string name="events_all_calendars">所有日历</string>
+    <string name="events_no_calendar">未选择日历</string>
+    <string name="events_no_events">暂无即将到来的日程</string>
+    <string name="events_filter">过滤</string>
+    <string name="events_filter_24h">24 小时</string>
+    <string name="events_filter_1week">1 周</string>
+    <string name="events_filter_2weeks">2 周</string>
+    <string name="events_filter_1month">1 个月</string>
+
+    <!-- Notifications -->
+    <string name="show_notification_badge">星号通知</string>
+    <string name="label_notifications">标签通知</string>
+    <string name="badge_indicator">角标样式</string>
+    <string name="badge_character_limit">字符上限</string>
+    <string name="show_media_playing_indicator">媒体播放星号</string>
+    <string name="show_media_playing_name">媒体播放名称</string>
+    <string name="show_sender_name">发件人名称</string>
+    <string name="show_conversation_group_name">群组名称</string>
+    <string name="show_message">消息内容</string>
+    <string name="clear_conversation_on_app_open">打开应用时清除</string>
+    <string name="letters_window">信件窗口</string>
+    <string name="letters_allowlist">信件允许列表</string>
+    <string name="push_notifications">启用通知</string>
+    <string name="chat_notifications_section">聊天通知</string>
+    <string name="home_notifications_allowlist">主屏通知允许列表</string>
+    <string name="notification_permission_enabled">通知使用权已开启</string>
+    <string name="notifications_per_page">每页通知数</string>
+    <string name="enable_bottom_navigation">启用底部导航</string>
+    <string name="no_notifications">暂无通知</string>
+    <string name="letters_screen_title">信件</string>
+    <string name="simple_tray_title">简易托盘</string>
+    <string name="simple_tray_allowlist">简易托盘允许列表</string>
+    <string name="simple_tray_apps">简易托盘应用</string>
+    <string name="hub_allowlist">枢纽允许列表</string>
+    <string name="hub_apps">枢纽应用</string>
+
+    <!-- App drawer -->
+    <string name="app_drawer">应用抽屉</string>
+    <string name="app_drawer_alignment">对齐</string>
+    <string name="az_filter">A-Z 筛选</string>
+    <string name="filtring">过滤</string>
+    <string name="show_icons">显示图标</string>
+    <string name="sort_order">排序方式</string>
+    <string name="hide_home_apps">隐藏主屏应用</string>
+    <string name="search_hidden_apps">搜索隐藏的应用</string>
+
+    <!-- Search -->
+    <string name="search_everything">搜索全部</string>
+    <string name="search_contacts">搜索联系人</string>
+    <string name="search_web">搜索网络</string>
+    <string name="search_settings">搜索设置</string>
+    <string name="search_music">搜索音乐</string>
+    <string name="search_files">搜索文件</string>
+    <string name="search_folders">搜索文件夹</string>
+    <string name="search_folders_add">添加</string>
+    <string name="auto_show_keyboard">自动显示键盘</string>
+    <string name="auto_launch_result">自动打开结果</string>
+    <string name="contacts_to_show">显示的联系人</string>
+    <string name="no_folders_selected">未选择文件夹</string>
+
+    <!-- Fonts -->
+    <string name="settings_font_section">设置字体</string>
+    <string name="settings_font_hoog">Hoog</string>
+    <string name="apps_font">应用字体</string>
+    <string name="clock_font">时钟字体</string>
+    <string name="date_font">日期字体</string>
+    <string name="quote_font">小组件字体</string>
+    <string name="letters_font">信件字体</string>
+    <string name="universal_custom_font">全局字体</string>
+    <string name="app_notification_font">角标通知字体</string>
+    <string name="label_notifications_font">标签通知字体</string>
+    <string name="label_notifications_size">标签通知字号</string>
+    <string name="title_label">标题</string>
+    <string name="title_font">标题字体</string>
+    <string name="title_size">标题字号</string>
+    <string name="body_font">正文字体</string>
+    <string name="body_text_size">正文字号</string>
+    <string name="home_fonts">主屏字体</string>
+    <string name="reset_all">全部重置</string>
+    <string name="add_custom_font">添加自定义字体…</string>
+    <string name="custom_fonts">自定义字体</string>
+    <string name="no_custom_fonts">无自定义字体</string>
+    <string name="confirm_delete_font">确认删除</string>
+
+    <!-- Sizes -->
+    <string name="app_text_size">应用字号</string>
+    <string name="clock_text_size">时钟字号</string>
+    <string name="date_text_size">日期字号</string>
+    <string name="quote_text_size">小组件字号</string>
+    <string name="settings_text_size">设置字号</string>
+    <string name="app_drawer_size">应用抽屉字号</string>
+    <string name="app_padding_size">应用间距</string>
+    <string name="icon_size">图标大小</string>
+    <string name="widget_size">小组件大小</string>
+    <string name="home_apps_y_offset">主屏应用垂直偏移</string>
+    <string name="top_widget_margin">顶部小组件边距</string>
+    <string name="bottom_widget_margin">底部小组件边距</string>
+
+    <!-- App name display -->
+    <string name="app_name_mode">应用名称类型</string>
+    <string name="app_name_mode_normal">原始大小写</string>
+    <string name="app_name_mode_all_caps">全大写</string>
+    <string name="small_caps_apps">小写</string>
+
+    <!-- Look &amp; Feel -->
+    <string name="themes">预设</string>
+    <string name="custom_theme">自定义</string>
+    <string name="theme_mode">主题模式</string>
+    <string name="choose_wallpaper_picker">选择壁纸来源</string>
+    <string name="background_color">背景</string>
+    <string name="text_color">文字颜色</string>
+    <string name="battery_color">电量</string>
+    <string name="button_corners">按钮-岛屿圆角</string>
+    <string name="text_islands">启用文字岛</string>
+    <string name="invert_islands">反转岛屿配色</string>
+    <string name="show_status_bar">显示状态栏</string>
+    <string name="show_navigation_bar">显示手势栏/导航栏</string>
+    <string name="vibration_feedback">振动反馈</string>
+    <string name="vibration_strength">振动强度</string>
+
+    <!-- Gestures -->
+    <string name="tap_click_actions">点按/单击</string>
+    <string name="double_tap">双击</string>
+    <string name="clock_click_app">单击时钟</string>
+    <string name="date_click_app">单击日期</string>
+    <string name="quote_click_app">单击语录</string>
+    <string name="edit_gestures_settings_toast">在 设置/手势 中编辑操作与手势</string>
+    <string name="swipe_movement">滑动</string>
+    <string name="swipe_left_app">向左滑动</string>
+    <string name="swipe_right_app">向右滑动</string>
+    <string name="swipe_up_app">向上滑动</string>
+    <string name="swipe_down_app">向下滑动</string>
+    <string name="swipe_threshold_ratios">滑动阈值比例</string>
+    <string name="short_swipe_ratio">短滑动比例</string>
+    <string name="long_swipe_ratio">长滑动比例</string>
+    <string name="swipe_ratio_display_format">%1$.2fx</string>
+    <string name="swipe_ratio_dialog_hint">输入 %1$.2f× 与 %2$.2f× 之间的比例</string>
+    <string name="swipe_ratio_value_label">比例</string>
+    <string name="edge_swipe_back">边缘滑动返回</string>
+    <string name="use_volume_keys_for_pages">音量键翻页</string>
+
+    <!-- Gesture actions -->
+    <string name="open_app">应用</string>
+    <string name="gesture_tab_inkos">inkOS</string>
+    <string name="gesture_tab_system">系统</string>
+    <string name="private_space">私密空间</string>
+    <string name="next_page">下一页</string>
+    <string name="previous_page">上一页</string>
+    <string name="eink_auto_refresh">自动墨水屏刷新</string>
+    <string name="eink_auto_mode">墨水屏模式</string>
+    <string name="eink_refresh">墨水屏刷新</string>
+    <string name="lock_screen">锁定屏幕</string>
+    <string name="show_recents">显示最近使用</string>
+    <string name="quick_settings">快捷设置</string>
+    <string name="power_dialog">电源菜单</string>
+    <string name="open_quick_settings">打开快捷设置</string>
+    <string name="open_power_dialog">打开电源菜单</string>
+    <string name="open_tools">打开工具</string>
+    <string name="open_clock">打开时钟</string>
+
+    <!-- Advanced settings -->
+    <string name="advanced_settings_title">高级</string>
+    <string name="app_version">应用版本</string>
+    <string name="advanced_settings_set_as_default_launcher">设为主启动器</string>
+    <string name="advanced_settings_change_default_launcher">更改默认启动器</string>
+    <string name="advanced_settings_restart_title">重启启动器</string>
+    <string name="restart_launcher">重启启动器</string>
+    <string name="advanced_settings_backup_restore_title">备份/恢复</string>
+    <string name="backup_all_data">备份全部数据</string>
+    <string name="backup_theme">备份主题</string>
+    <string name="advanced_settings_backup_restore_restore">恢复</string>
+    <string name="advanced_settings_backup_restore_clear_title">清除偏好设置</string>
+    <string name="advanced_settings_backup_restore_clear_description">您确定要这样做吗？</string>
+    <string name="advanced_settings_backup_restore_clear_yes">是</string>
+    <string name="advanced_settings_backup_restore_clear_no">否</string>
+    <string name="advanced_settings_share_application_description">用 %1$s 提升您的体验！</string>
+    <string name="advanced_settings_share_application_description_addon">立即在 %1$s 获取，看看大家都在讨论什么！%2$s\n</string>
+    <string name="auto_eink_refresh">自动墨水屏刷新</string>
+    <string name="auto_refresh_home_only">仅在主屏自动刷新</string>
+    <string name="eink_refresh_delay">墨水屏刷新延迟</string>
+    <string name="ui_scale">界面缩放</string>
+    <string name="onboarding">初始引导</string>
+    <string name="guide">使用指南</string>
+    <string name="buy_me_a_coffee">请我喝杯咖啡</string>
+    <string name="github_sponsors">GitHub 赞助</string>
+    <string name="report_issues">报告问题</string>
+    <string name="reddit_inkos">Reddit — r/inkos</string>
+    <string name="font_license_ofl">字体许可 (OFL)</string>
+    <string name="credits">鸣谢</string>
+
+    <!-- App shortcuts -->
+    <string name="app_shortcuts">应用快捷方式</string>
+    <string name="shortcuts_selected">已选择 %1$d 个</string>
+    <string name="no_app_shortcuts">暂无应用快捷方式</string>
+    <string name="no_inkos_shortcuts">暂无 inkOS 快捷方式</string>
+    <string name="no_pinned_shortcuts">暂无已固定的快捷方式。可以从浏览器（如 Chrome/Firefox/Brave）或 Activity launcher 等其他应用创建固定快捷方式。</string>
+    <string name="system_shortcuts_search_hint">系统快捷方式现可通过搜索使用。请在 应用抽屉/搜索设置 中启用设置搜索。</string>
+    <string name="shortcut_icon">快捷方式图标</string>
+
+    <!-- Favorites -->
+    <string name="favorite_apps">常用应用</string>
+    <string name="reorder_apps">重新排序</string>
+    <string name="edit_favorites">编辑常用应用</string>
+    <string name="max_favorites_reached">已达最大 %d 个常用应用</string>
+
+    <!-- Separators -->
+    <string name="separator_empty">空白</string>
+    <string name="separator_em_dash">长破折号 —</string>
+    <string name="separator_dots">点 ···</string>
+
+    <!-- Context menu -->
+    <string name="unpin_shortcut">取消固定快捷方式</string>
+    <string name="uninstall">卸载</string>
+    <string name="app_info">应用信息</string>
+
+    <!-- Format strings (edit mode sliders) -->
+    <string name="widget_height_fmt">小组件高度：%1$ddp</string>
+    <string name="left_margin_fmt">左边距：%1$d%%</string>
+    <string name="right_margin_fmt">右边距：%1$d%%</string>
+    <string name="top_margin_fmt">顶部小组件边距：%1$d</string>
+    <string name="bottom_margin_fmt">底部小组件边距：%1$d</string>
+    <string name="y_offset_fmt">主屏应用垂直偏移：%1$d</string>
+    <string name="app_text_size_fmt">应用字号：%1$d</string>
+    <string name="app_gap_fmt">应用间距：%1$d</string>
+    <string name="num_home_apps_fmt">主屏应用数量：%1$d</string>
+    <string name="num_pages_fmt">页面数量：%1$d</string>
+    <string name="drawer_size_fmt">应用大小：%1$d</string>
+    <string name="drawer_gap_fmt">应用间距：%1$d</string>
+    <string name="hidden_count_fmt">已隐藏 %1$d 个</string>
+    <string name="selected_count_fmt">已选择 %1$d 个</string>
+
+    <!-- Option values -->
+    <string name="option_default">默认</string>
+    <string name="option_box_solid">实心方框</string>
+    <string name="option_box_outline">描边方框</string>
+    <string name="option_flip">翻页</string>
+    <string name="option_round">圆形</string>
+    <string name="option_analog">指针</string>
+    <string name="option_split">分离</string>
+    <string name="option_horizontal">横向</string>
+    <string name="option_stacked">堆叠</string>
+    <string name="option_digital">数字</string>
+    <string name="option_matrix">点阵</string>
+    <string name="option_system">系统</string>
+    <string name="option_24_hour">24 小时</string>
+    <string name="option_12_hour">12 小时</string>
+    <string name="option_12_hour_alt">12 小时（备选）</string>
+    <string name="option_date_format_1">周四, 5 3月</string>
+    <string name="option_date_format_2">周四, 3月5日</string>
+    <string name="option_date_format_3">3月5日</string>
+    <string name="option_date_format_4">5 3月</string>
+    <string name="option_date_format_5">星期四</string>
+    <string name="option_simple_tray">简易托盘</string>
+    <string name="option_letters">信件</string>
+    <string name="option_hub">枢纽</string>
+    <string name="option_pill">胶囊</string>
+    <string name="option_rounded">圆角</string>
+    <string name="option_square">方形</string>
+    <string name="option_az">A-Z</string>
+    <string name="option_most_used">最常使用</string>
+    <string name="option_last_used">最近使用</string>
+    <string name="option_recents">最近</string>
+    <string name="option_today">今天</string>
+    <string name="option_this_week">本周</string>
+    <string name="option_this_month">本月</string>
+    <string name="option_all_time">全部时间</string>
+    <string name="option_time">时间</string>
+    <string name="option_money">金额</string>
+    <string name="option_coffee">咖啡</string>
+    <string name="option_none_widget">无</string>
+    <string name="option_all">全部</string>
+
+    <!-- Icon style -->
+    <string name="icon_style">图标样式</string>
+    <string name="icon_shape">图标形状</string>
+    <string name="icon_none">无</string>
+    <string name="icon_letters">字母</string>
+    <string name="icon_inkos">着色</string>
+    <string name="icon_minimal">字形</string>
+    <string name="icon_filled">实心</string>
+    <string name="icon_tint_contrast">着色对比度</string>
+    <string name="desc_icon_tint_contrast">调整着色图标的对比度（0.0× 柔和，1.0× 正常，3.0× 极强）</string>
+    <string name="icon_system">系统</string>
+    <string name="icon_preview_text">Ab</string>
+
+    <!-- Recents -->
+    <string name="default_view">默认视图</string>
+    <string name="usage_period">统计周期</string>
+    <string name="most_used_unit">计量单位</string>
+    <string name="currency_symbol">货币符号</string>
+    <string name="hourly_rate">时薪</string>
+    <string name="hourly_rate_hint">时薪（整数）</string>
+    <string name="unit_emoji">单位表情</string>
+    <string name="coffee_price">咖啡价格</string>
+    <string name="coffee_price_hint">每杯咖啡价格（整数）</string>
+    <string name="usage_permission">使用情况访问权限</string>
+    <string name="no_recent_apps">暂无最近应用</string>
+
+    <!-- Wallpaper -->
+    <string name="wallpaper">壁纸</string>
+    <string name="wallpaper_visibility">壁纸可见度</string>
+    <string name="wallpaper_set">应用</string>
+    <string name="set_wallpaper_for">设置壁纸到</string>
+    <string name="wallpaper_inkos">inkOS</string>
+    <string name="wallpaper_android">Android</string>
+    <string name="wallpaper_home_screen">主屏幕</string>
+    <string name="wallpaper_lock_screen">锁屏</string>
+    <string name="wallpaper_both">两者</string>
+    <string name="about_inkos_wallpaper">关于 inkOS 壁纸</string>
+    <string name="what_is_inkos_wallpaper">什么是 inkOS 壁纸？</string>
+    <string name="inkos_wallpaper_explanation">inkOS 壁纸是一种「伪」壁纸，是显示在 Android 实际壁纸层之上的一张图片。\n\n它的用途是绕开 Android 对壁纸的裁剪和缩放——这些操作可能破坏 1:1 像素缩放，从而损伤您的图像，尤其是在电子墨水屏设备上。\n\n请确保使用正确的宽高比，或与您的屏幕分辨率完全一致。\n\n设置 Android 壁纸会自动清除 inkOS 壁纸。</string>
+
+    <!-- Theme config -->
+    <string name="theme_config">主题配置</string>
+    <string name="theme_config_hint">关闭您不希望被覆盖的设置。已启用的项目会替换您现有的设置。</string>
+    <string name="config_colors">颜色</string>
+    <string name="config_font">字体</string>
+    <string name="config_icons">图标</string>
+    <string name="config_layout">布局</string>
+    <string name="config_wallpaper">壁纸</string>
+    <string name="theme_exported">主题已导出</string>
+    <string name="theme_imported">主题已导入</string>
+
+    <!-- Backup / Restore -->
+    <string name="backup_restore_title">备份 / 恢复</string>
+    <string name="restore_data">恢复数据</string>
+    <string name="export_theme">导出主题</string>
+    <string name="import_theme">导入主题</string>
+    <string name="clear_all_data">清除全部数据</string>
+    <string name="theme_export_import">主题</string>
+    <string name="desc_backup_restore">备份、恢复或清除全部数据</string>
+    <string name="desc_theme_export_import">导出或导入您的主题设置</string>
+    <string name="clear_all_data_confirm_title">清除全部数据</string>
+    <string name="clear_all_data_confirm_description">这将删除所有偏好设置、自定义字体、壁纸和缓存数据，且无法撤销。</string>
+
+    <!-- Quick Menu -->
+    <string name="quick_menu">快捷菜单</string>
+    <string name="inkos_settings">inkOS 设置</string>
+    <string name="system_settings">系统设置</string>
+
+    <!-- Media player -->
+    <string name="open_music_app">打开音乐应用</string>
+    <string name="previous_track">上一曲</string>
+    <string name="play_or_pause">播放或暂停</string>
+    <string name="next_track">下一曲</string>
+    <string name="stop_playback">停止播放</string>
+
+    <!-- Private Space -->
+    <string name="alert_requires_android_v">此功能需要 Android 15 或更高版本。</string>
+    <string name="toast_private_space_default_home_screen">inkOS 需要设为默认主屏幕才能访问私密空间。</string>
+    <string name="toast_private_space_locked">私密空间已锁定</string>
+    <string name="toast_private_space_unlocked">私密空间已解锁</string>
+    <string name="toast_private_space_not_available">私密空间不可用</string>
+
+    <!-- Work Profile -->
+    <string name="work_profile">工作资料</string>
+    <string name="toast_work_profile_paused">工作资料已暂停</string>
+    <string name="toast_work_profile_resumed">工作资料已恢复</string>
+    <string name="toast_work_profile_not_available">工作资料不可用</string>
+
+    <!-- Hub -->
+    <string name="hub_all">全部</string>
+    <string name="hub_messages">消息</string>
+    <string name="hub_calls">通话</string>
+    <string name="hub_email">邮件</string>
+    <string name="hub_events">日程</string>
+    <string name="hub_other">其他</string>
+    <string name="hub_action">操作</string>
+    <string name="hub_open">打开</string>
+    <string name="hub_clear_all">全部清除</string>
+    <string name="hub_clear">清除</string>
+
+    <!-- Privacy Policy -->
+    <string name="privacy_policy">隐私政策</string>
+    <string name="privacy_updated">最后更新：2025 年 12 月</string>
+    <string name="privacy_no_data_title">不收集数据</string>
+    <string name="privacy_no_data_body">inkOS 不会跟踪您。我们无法收集、存储或分享您的数据，因为 inkOS 不具备访问或传输您个人信息的能力。</string>
+    <string name="privacy_no_server_title">不连接服务器</string>
+    <string name="privacy_no_server_body">inkOS 不会连接任何服务器。所有功能完全在您的设备上运行。没有网络通信，也没有外部连接。</string>
+    <string name="privacy_local_title">仅本地数据</string>
+    <string name="privacy_local_body">inkOS 仅预览和显示您手机上已有的数据。所有应用信息、通知和设置都在本地处理。任何内容都不会离开您的设备。</string>
+    <string name="privacy_open_source_title">开源</string>
+    <string name="privacy_open_source_body">inkOS 是开源软件。您可以在 GitHub 上查看源代码以验证这些声明。</string>
+    <string name="ofl_title">开放字体许可 1.1</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_welcome">欢迎</string>
+    <string name="onboarding_privacy">隐私</string>
+    <string name="onboarding_notifications">通知</string>
+    <string name="onboarding_default_launcher">默认主屏</string>
+    <string name="onboarding_settings">设置</string>
+    <string name="onboarding_theme">主题</string>
+    <string name="onboarding_home_apps">主屏应用</string>
+    <string name="onboarding_app_version">应用版本</string>
+    <string name="onboarding_read_policy">阅读完整政策</string>
+    <string name="onboarding_agree_policy">我同意隐私政策</string>
+    <string name="onboarding_choose_preset">选择预设</string>
+    <string name="onboarding_edit_favorites">编辑常用应用</string>
+    <string name="onboarding_permission_granted">权限已授予</string>
+    <string name="onboarding_grant_permission">授予权限</string>
+    <string name="onboarding_default_set">默认启动器已设置</string>
+    <string name="onboarding_set_default">设为默认启动器</string>
+    <string name="onboarding_mono">单色</string>
+    <string name="onboarding_desc_1">专注纯粹的界面，清晰而专注。专为墨水屏设备、QWERTY 和 T9 手机优化。</string>
+    <string name="onboarding_desc_2">inkOS 不收集、不存储、不分享任何数据。没有服务器连接，也没有追踪。一切都留在你的设备上。</string>
+    <string name="onboarding_desc_3">为了充分发挥 inkOS 的作用，请授予通知权限，让 inkOS 可以在主屏、信件或简易托盘中转发 Android 通知。</string>
+    <string name="onboarding_desc_4">要将 inkOS 设为你的新应用主页，请将其设为默认启动器。之后可以在设置中更改。</string>
+    <string name="onboarding_desc_5">要访问设置，请在主屏空白区域捏合（缩小）以打开快捷设置。你可以借此进入全部设置，或为前端编辑器启用编辑模式。</string>
+    <string name="onboarding_desc_6">为启动器选择配色预设，或跳过并保留当前主题，从零开始。</string>
+    <string name="onboarding_desc_7">使用"编辑常用应用"选择并排列主屏快捷方式。你仍然可以像以前一样长按主屏中的单个应用来单独替换它们。</string>
+    <string name="onboarding_confirm_read">我已阅读并确认</string>
+    <string name="onboarding_need_agree_policy">继续之前，你需要先同意隐私政策</string>
+    <string name="onboarding_need_confirm_settings">请确认你已阅读设置说明</string>
+
+    <!-- Accessibility -->
+    <string name="accessibility_service_name">inkOS 操作服务</string>
+    <string name="accessibility_service_description">inkOS 仅使用此无障碍服务执行您分配给手势的系统操作：锁定屏幕、打开最近应用、打开快捷设置和打开电源菜单。此服务不会读取、收集、存储或分享任何屏幕内容、个人数据或用户信息。任何数据都不会离开您的设备。</string>
+    <string name="can_not_delete_system_apps">无法删除系统应用</string>
+    <string name="drawer_list_empty_hint">未找到应用</string>
+    <string name="long_press_for_settings">长按任意位置打开设置</string>
+    <string name="long_press_to_select_app">长按选择应用</string>
+    <string name="swipe_up_for_apps">上下滑动切换页面</string>
+    <string name="app_drawer_tips">提示：下滑收起。滚动隐藏键盘。</string>
+
+    <!-- Biometric -->
+    <string name="text_authentication_cancel">认证已取消。</string>
+    <string name="text_authentication_error">认证错误：%1$s（代码 %2$d）</string>
+    <string name="text_authentication_failed">认证失败。</string>
+    <string name="text_biometric_login">生物识别登录 inkOS 设置</string>
+    <string name="text_biometric_login_app">使用生物识别登录 %1$s</string>
+    <string name="text_biometric_login_sub">使用您的生物识别凭据登录。</string>
+
+    <!-- Crash reporting -->
+    <string name="acra_crash">崩溃</string>
+    <string name="acra_dialog_text">抱歉，%1$s 遇到了意外问题并需要关闭。请通过发送崩溃报告帮助我们改进。\n\n%1$s 重视您的隐私，收集的数据仅用于提升应用稳定性，不会收集任何个人信息。感谢您的支持！</string>
+    <string name="acra_send_report">发送报告</string>
+    <string name="acra_dont_send">不发送</string>
+
+    <!-- Errors -->
+    <string name="error_invalid_file_title">无效的文件类型</string>
+    <string name="error_invalid_file_message">请使用您导出的备份 .json 文件</string>
+    <string name="error_no_file_picker_title">未找到文件选择器</string>
+    <string name="error_no_file_picker_message">未安装兼容的文件管理器。请安装文件管理器应用以恢复备份。</string>
+
+    <!-- Toast messages -->
+    <string name="toast_copied">已复制</string>
+    <string name="toast_pasted">已粘贴</string>
+    <string name="toast_permission_failed">权限请求失败，请重试。</string>
+    <string name="toast_bluetooth_permission">切换需要蓝牙权限</string>
+    <string name="toast_phone_permission">需要电话状态权限</string>
+    <string name="toast_camera_permission">使用手电筒需要相机权限</string>
+    <string name="toast_please_wait">请稍候…</string>
+    <string name="toast_all_dismissed">已清除全部通知</string>
+    <string name="toast_no_flashlight">无可用手电筒</string>
+    <string name="toast_allow_bluetooth">请允许蓝牙权限以切换</string>
+    <string name="toast_allow_camera">请允许相机权限以使用手电筒</string>
+    <string name="toast_android15_bluetooth">Android 15+ 需要手动切换蓝牙</string>
+    <string name="toast_no_widgets_available">暂无可用小组件</string>
+    <string name="toast_widget_config_unavailable">小组件配置不可用</string>
+    <string name="toast_shortcut_unpinned">已取消固定快捷方式</string>
+    <string name="toast_unpin_failed">取消固定快捷方式失败</string>
+    <string name="toast_shortcut_removed">快捷方式已从抽屉移除</string>
+    <string name="toast_biometric_unavailable">生物识别认证不可用</string>
+
+    <!-- Permission dialogs -->
+    <string name="perm_bluetooth_title">蓝牙权限</string>
+    <string name="perm_bluetooth_body">此应用需要蓝牙权限，以便在快捷设置托盘中开关蓝牙。</string>
+    <string name="perm_phone_title">电话状态权限</string>
+    <string name="perm_phone_body">此应用需要电话状态权限，以便在快捷设置托盘中读取和控制移动数据设置。</string>
+    <string name="perm_camera_title">相机权限</string>
+    <string name="perm_camera_body">此应用需要相机权限，以便在快捷设置托盘中使用手电筒功能。</string>
+    <string name="perm_write_settings_title">修改系统设置权限</string>
+    <string name="perm_write_settings_body">此应用需要修改系统设置的权限来控制屏幕亮度。将带您前往 Android 设置以授予此权限。</string>
+    <string name="perm_notification_title">通知使用权</string>
+    <string name="perm_notification_body">inkOS 需要通知使用权才能在此显示您的通知。将带您前往 Android 设置以授予此权限。</string>
+    <string name="bluetooth_permission_required_title">需要蓝牙权限：</string>
+    <string name="bluetooth_permission_required_body">此工具仅适用于 Mudita Kompakt 等没有蓝牙历史记录的手机。缺少权限：%1$s。请授予权限以使用蓝牙功能。</string>
+
+    <!-- Widgets (Android home/lock screen) -->
+    <string name="quote_widget_label">语录</string>
+    <string name="quote_widget_description">在主屏显示语录</string>
+    <string name="quote_widget_loading">加载中…</string>
+    <string name="notification_widget_label">通知锁屏</string>
+    <string name="notification_widget_description">显示最近应用的通知数量</string>
+
+    <!-- Settings item descriptions -->
+    <string name="desc_home_settings">小组件、时钟与状态栏</string>
+    <string name="desc_drawer_settings">样式、排序与搜索</string>
+    <string name="desc_fonts_settings">字体与文字大小</string>
+    <string name="desc_look_feel_settings">主题、颜色与壁纸</string>
+    <string name="desc_gestures_settings">滑动与点按操作</string>
+    <string name="desc_notifications_settings">角标与通知</string>
+    <string name="desc_private_space">管理私密空间</string>
+    <string name="desc_work_profile">切换工作应用</string>
+    <string name="desc_advanced_settings">启动器与实用工具</string>
+    <string name="desc_extras_settings">扩展与工具</string>
+    <string name="desc_buy_coffee">请我喝杯咖啡以示支持</string>
+    <string name="desc_github_sponsor">成为 GitHub 赞助者</string>
+    <string name="desc_report_bugs">报告问题或建议功能</string>
+    <string name="desc_reddit_community">加入 Reddit 社区</string>
+    <string name="desc_app_version">点按查看应用信息</string>
+    <string name="desc_font_license">开放字体许可</string>
+    <string name="desc_open_source">原始分支</string>
+    <string name="desc_eink_mode">清晰 > 对比 > 阅读</string>
+    <string name="desc_eink_auto_refresh">减少墨水屏残影</string>
+    <string name="desc_eink_home_only">仅在主屏自动刷新</string>
+    <string name="desc_eink_interval">刷新间隔</string>
+    <string name="desc_volume_keys">使用音量键翻页</string>
+    <string name="desc_lock_home_apps">防止应用被重新排列</string>
+    <string name="desc_longpress_app_info">长按查看应用信息</string>
+    <string name="desc_lock_settings">设置页生物识别锁</string>
+    <string name="desc_app_padding">主屏应用间距</string>
+    <string name="desc_home_y_offset">应用的垂直位置</string>
+    <string name="desc_top_widget_margin">时钟/日期上方留白</string>
+    <string name="desc_bottom_widget_margin">底部小组件下方留白</string>
+    <string name="desc_home_apps_num">主屏常用应用数量</string>
+    <string name="desc_home_pages_num">主屏页面数量</string>
+    <string name="desc_page_indicator">显示页面指示点</string>
+    <string name="desc_page_reset">始终返回第一页</string>
+    <string name="desc_home_alignment">主屏应用对齐</string>
+    <string name="desc_show_clock">在主屏显示时钟</string>
+    <string name="desc_clock_format">选择 12 小时、24 小时或系统</string>
+    <string name="desc_clock_style">时钟的视觉样式</string>
+    <string name="desc_show_am_pm">在时钟上显示上午/下午</string>
+    <string name="desc_dual_clocks">带时区的双时钟</string>
+    <string name="desc_second_clock_offset">设置时区差异</string>
+    <string name="desc_clock_alignment">时钟对齐</string>
+    <string name="desc_show_date">在主屏显示日期</string>
+    <string name="desc_date_format">日期显示格式</string>
+    <string name="desc_show_battery">日期旁显示电量 %</string>
+    <string name="desc_notification_count">未读通知数量</string>
+    <string name="desc_notification_style">信件或简易托盘</string>
+    <string name="desc_date_alignment">日期栏对齐</string>
+    <string name="desc_audio_widget">播放时显示媒体控制</string>
+    <string name="desc_bottom_widget">选择底部小组件</string>
+    <string name="desc_events_calendar">日程使用的日历</string>
+    <string name="desc_events_filter">按时间范围过滤日程</string>
+    <string name="desc_quote_text">自定义语录文本</string>
+    <string name="desc_quote_alignment">底部小组件对齐</string>
+    <string name="desc_choose_widget">选择 Android 小组件</string>
+    <string name="desc_widget_height">Android 小组件高度</string>
+    <string name="desc_widget_margin_start">小组件左边距</string>
+    <string name="desc_widget_margin_end">小组件右边距</string>
+    <string name="desc_remove_widget">移除当前小组件</string>
+    <string name="desc_extend_area">主屏应用占满整行</string>
+    <string name="desc_all_apps">浏览所有已安装应用</string>
+    <string name="desc_hidden_apps">管理隐藏的应用</string>
+    <string name="desc_app_shortcuts">管理应用快捷方式</string>
+    <string name="desc_drawer_font_size">抽屉应用字号</string>
+    <string name="desc_drawer_gap">抽屉应用间距</string>
+    <string name="desc_drawer_alignment">抽屉应用对齐</string>
+    <string name="desc_drawer_icons">在抽屉中显示图标</string>
+    <string name="desc_az_filter">A-Z 快速导航筛选</string>
+    <string name="desc_drawer_sort">抽屉中的应用排序</string>
+    <string name="desc_hide_home_apps">在抽屉中隐藏主屏应用</string>
+    <string name="desc_show_search_bar">显示搜索栏</string>
+    <string name="desc_auto_keyboard">自动打开键盘</string>
+    <string name="desc_auto_open_result">自动打开唯一结果</string>
+    <string name="desc_search_hidden">同时搜索隐藏的应用</string>
+    <string name="desc_search_contacts">同时搜索联系人</string>
+    <string name="desc_contact_lists">选择联系人列表</string>
+    <string name="desc_search_web">包含网络结果</string>
+    <string name="desc_search_settings">包含设置结果</string>
+    <string name="desc_search_music">包含音乐结果</string>
+    <string name="desc_search_files">在文件夹中搜索文件</string>
+    <string name="desc_search_folders">管理要搜索的文件夹</string>
+    <string name="desc_theme_preset">选择预设主题</string>
+    <string name="desc_theme_mode">浅色、深色或系统</string>
+    <string name="desc_element_colors">编辑背景与文字</string>
+    <string name="desc_wallpaper">选择壁纸</string>
+    <string name="desc_wallpaper_opacity">设置壁纸不透明度</string>
+    <string name="desc_show_icons">在名称旁显示图标</string>
+    <string name="desc_icon_pack">选择图标包</string>
+    <string name="desc_icon_shape">图标遮罩形状</string>
+    <string name="desc_button_corners">UI 按钮的圆角样式</string>
+    <string name="desc_text_islands">文字背景形状</string>
+    <string name="desc_invert_islands">交换岛屿文字与背景色</string>
+    <string name="desc_vibration">触摸时振动</string>
+    <string name="desc_vibration_strength">调整全部振动的强度</string>
+    <string name="desc_status_bar">显示系统状态栏</string>
+    <string name="desc_navigation_bar">显示系统导航栏</string>
+    <string name="desc_double_tap">双击操作</string>
+    <string name="desc_clock_tap">单击时钟操作</string>
+    <string name="desc_date_tap">单击日期操作</string>
+    <string name="desc_quote_tap">单击语录操作</string>
+    <string name="desc_swipe_left">左滑操作</string>
+    <string name="desc_swipe_right">右滑操作</string>
+    <string name="desc_swipe_up">上滑操作</string>
+    <string name="desc_swipe_down">下滑操作</string>
+    <string name="desc_short_swipe">短滑动灵敏度</string>
+    <string name="desc_long_swipe">长滑动灵敏度</string>
+    <string name="desc_edge_swipe">边缘滑动返回</string>
+    <string name="desc_universal_font">全局统一字体</string>
+    <string name="desc_universal_font_select">选择全局字体</string>
+    <string name="desc_settings_font">设置页字体</string>
+    <string name="desc_settings_size">设置页文字大小</string>
+    <string name="desc_apps_font">应用名称字体</string>
+    <string name="desc_apps_size">应用名称文字大小</string>
+    <string name="desc_app_name_mode">大小写样式</string>
+    <string name="desc_clock_font">时钟小组件字体</string>
+    <string name="desc_clock_size">时钟文字大小</string>
+    <string name="desc_date_font">日期显示字体</string>
+    <string name="desc_date_size">日期文字大小</string>
+    <string name="desc_quote_font">语录小组件字体</string>
+    <string name="desc_quote_size">语录文字大小</string>
+    <string name="desc_noti_label_font">通知标签字体</string>
+    <string name="desc_noti_label_size">通知标签大小</string>
+    <string name="desc_letters_title">信件窗口标题</string>
+    <string name="desc_letters_title_font">信件标题字体</string>
+    <string name="desc_letters_title_size">信件标题大小</string>
+    <string name="desc_noti_body_font">通知正文字体</string>
+    <string name="desc_noti_body_size">通知正文大小</string>
+    <string name="desc_noti_access">通知读取权限</string>
+    <string name="desc_noti_dots">应用上的通知圆点</string>
+    <string name="desc_noti_text_home">主屏通知文字</string>
+    <string name="desc_media_indicator">媒体播放指示</string>
+    <string name="desc_media_track_name">显示正在播放的曲目名</string>
+    <string name="desc_noti_app_filter">通知应用过滤</string>
+    <string name="desc_sender_name">显示消息发件人名称</string>
+    <string name="desc_group_name">显示群聊名称</string>
+    <string name="desc_message_preview">消息预览文本</string>
+    <string name="desc_noti_char_limit">通知字符上限</string>
+    <string name="desc_enable_letters">启用信件窗口</string>
+    <string name="desc_clear_on_open">打开应用时清除</string>
+    <string name="desc_letters_filter">信件应用过滤</string>
+    <string name="desc_noti_per_page">每页通知数</string>
+    <string name="desc_bottom_nav">底部页面导航</string>
+    <string name="desc_simple_tray_filter">简易托盘应用过滤</string>
+
+    <string name="accessibility_permission_title">需要无障碍权限</string>
+    <string name="accessibility_permission_message">inkOS 需要无障碍服务权限才能执行此手势操作（锁定屏幕、最近应用、快捷设置或电源菜单）。\n\n此服务仅执行您分配的系统操作，不会读取屏幕内容、收集个人数据或传输任何信息。所有处理均在您的设备上进行。\n\n将带您前往无障碍设置以启用 inkOS 操作服务。</string>
+    <string name="btn_deny">拒绝</string>
+    <string name="btn_allow">允许</string>
+    <string name="write_settings_permission_title">修改系统设置</string>
+    <string name="write_settings_permission_message">亮度控制需要修改系统设置的权限。将带您前往设置以授予此权限。</string>
+
+    <!-- Wallpaper preset names -->
+    <string name="cd_previous">上一个</string>
+    <string name="cd_next">下一个</string>
+    <string name="wp_preset_white">白色</string>
+    <string name="wp_preset_black">黑色</string>
+    <string name="wp_preset_japan">日本</string>
+    <string name="wp_preset_japan2">日本 2</string>
+    <string name="wp_preset_nyc">纽约</string>
+    <string name="wp_preset_sf">旧金山</string>
+    <string name="wp_preset_trees">树林</string>
+    <string name="wp_preset_bamboo">竹林</string>
+    <string name="wp_preset_blossom">花枝</string>
+    <string name="wp_preset_building">建筑</string>
+    <string name="wp_preset_forrest">森林</string>
+    <string name="wp_preset_leaf">树叶</string>
+    <string name="wp_preset_liberty">自由女神</string>
+    <string name="wp_preset_urban">都市</string>
+    <string name="wp_preset_halfdots">半点阵</string>
+    <string name="wp_preset_halfdots_two">半点阵 2</string>
+    <string name="wp_preset_dots">圆点</string>
+    <string name="wp_preset_lines">线条</string>
+    <string name="wp_preset_grid">网格</string>
+    <string name="wp_preset_diagonal">斜线</string>
+    <string name="wp_preset_circles">圆圈</string>
+    <string name="wp_preset_crosshatch">交叉线</string>
+    <string name="wp_preset_waves">波浪</string>
+    <string name="wp_preset_plus">加号</string>
+    <string name="wp_preset_matrix">矩阵</string>
+    <string name="wp_preset_binary">二进制</string>
+
+    <!-- Badge indicator labels -->
+    <string name="badge_label_asterisk">星号</string>
+    <string name="badge_label_filled_circle">实心圆</string>
+    <string name="badge_label_outline_circle">空心圆</string>
+    <string name="badge_label_filled_diamond">实心菱形</string>
+    <string name="badge_label_filled_square">实心方块</string>
+
+    <!-- Device settings search entries -->
+    <string name="settings_entry_wifi">Wi-Fi</string>
+    <string name="settings_entry_bluetooth">蓝牙</string>
+    <string name="settings_entry_airplane">飞行模式</string>
+    <string name="settings_entry_mobile_data">移动数据</string>
+    <string name="settings_entry_vpn">VPN</string>
+    <string name="settings_entry_nfc">NFC</string>
+    <string name="settings_entry_hotspot">热点与网络共享</string>
+    <string name="settings_entry_cast">投射屏幕</string>
+    <string name="settings_entry_display">显示</string>
+    <string name="settings_entry_display_size">显示大小与 DPI</string>
+    <string name="settings_entry_font_size">字号</string>
+    <string name="settings_entry_wallpaper">壁纸</string>
+    <string name="settings_entry_dark_mode">深色模式</string>
+    <string name="settings_entry_auto_rotate">自动旋转</string>
+    <string name="settings_entry_sound">声音</string>
+    <string name="settings_entry_dnd">勿扰模式</string>
+    <string name="settings_entry_battery">电池</string>
+    <string name="settings_entry_storage">存储</string>
+    <string name="settings_entry_location">定位</string>
+    <string name="settings_entry_security">安全</string>
+    <string name="settings_entry_privacy">隐私</string>
+    <string name="settings_entry_accessibility">无障碍</string>
+    <string name="settings_entry_language_input">语言与输入</string>
+    <string name="settings_entry_date_time">日期与时间</string>
+    <string name="settings_entry_developer">开发者选项</string>
+    <string name="settings_entry_connected_devices">已连接设备</string>
+    <string name="settings_entry_apps">应用</string>
+    <string name="settings_entry_app_notifications">应用通知</string>
+    <string name="settings_entry_default_apps">默认应用</string>
+    <string name="settings_entry_accounts">账户</string>
+    <string name="settings_entry_backup_reset">备份与重置</string>
+    <string name="settings_entry_about_phone">关于手机</string>
+    <string name="settings_entry_system_update">系统更新</string>
+    <string name="settings_entry_memory_usage">内存使用</string>
+    <string name="settings_entry_notification_log">通知日志</string>
+    <string name="settings_entry_sim_lock">SIM 卡锁</string>
+    <string name="settings_entry_battery_optimization">电池优化</string>
+    <string name="settings_entry_data_usage">数据用量</string>
+    <string name="settings_entry_mobile_network">移动网络</string>
+    <string name="settings_entry_storage_manager">存储管理器</string>
+    <string name="settings_entry_brightness_dialog">亮度对话框</string>
+    <string name="settings_entry_vision">视觉设置</string>
+    <string name="settings_entry_settings_search">设置搜索</string>
+    <string name="settings_entry_settings">设置</string>
+
+    <!-- Misc UI strings -->
+    <string name="shortcut_pinned_fmt">已固定快捷方式：%1$s</string>
+    <string name="shortcut_added_fmt">已添加快捷方式：%1$s</string>
+    <string name="shortcut_installed_fmt">已安装快捷方式：%1$s</string>
+    <string name="failed_pin_shortcut">无法固定快捷方式</string>
+    <string name="widget_pinning_not_supported">不支持固定小组件</string>
+    <string name="error_pinning_shortcut">固定快捷方式出错</string>
+    <string name="shortcut_already_exists">快捷方式已存在</string>
+    <string name="error_creating_shortcut">创建快捷方式出错</string>
+    <string name="tray_tip_dismiss">关闭：Del、C、#1 | 长按关闭全部</string>
+    <string name="tray_tip_open">打开：Enter、DPad 中央、#3</string>
+    <string name="widget_picker_not_available">小组件选择器不可用</string>
+    <string name="brightness_restored_fmt">亮度已恢复到 %1$d</string>
+    <string name="brightness_dimmed_fmt">亮度已调暗（已保存：%1$d）</string>
+    <string name="brightness_control_not_available">亮度控制不可用</string>
+    <string name="brightness_permission_required">需要权限才能控制亮度</string>
+    <string name="brightness_modify_settings_hint">请为 inkOS 开启"修改系统设置"权限以使用亮度手势。这是面向 Mudita Kompakt 的功能。</string>
+    <string name="tap_to_choose_widget">点击选择小组件</string>
+    <string name="auth_to_open_fmt">验证身份以打开 %1$s</string>
+    <string name="theme_applied">主题已应用</string>
+    <string name="theme_preset_config">配置</string>
+    <string name="theme_preset_apply">应用</string>
+    <string name="hide_apps_title">隐藏应用</string>
+    <string name="tooltip_edit_favorites_line1">点击顶部的数字可更改应用/页面数量。</string>
+    <string name="tooltip_edit_favorites_line2">拖动 = 图标可重新排序应用。</string>
+    <string name="tooltip_hidden_apps_line">点击标题可多选要隐藏或取消隐藏的应用。</string>
+    <string name="tooltip_edit_hidden_line">点击应用以隐藏或取消隐藏，然后点击完成。</string>
+    <string name="tooltip_letters_line1">上下滑动可在通知之间切换。</string>
+    <string name="tooltip_letters_line2">长按关闭可关闭全部通知。</string>
+    <string name="tooltip_recents_line">点击标题可在"最近使用"和"最常使用"之间切换</string>
+    <string name="calculating">正在计算…</string>
+    <string name="wallpaper_settings_not_available">壁纸设置不可用</string>
+    <string name="light_theme">浅色主题</string>
+    <string name="import_failed">导入失败</string>
+    <string name="export_failed">导出失败</string>
+    <string name="unknown_error">未知错误</string>
+    <string name="cannot_read_file">无法读取文件</string>
+    <string name="no_music_player_found">未找到音乐播放器</string>
+    <string name="no_app_for_file">没有可打开此文件的应用</string>
+    <string name="unable_open_settings">无法打开设置</string>
+    <string name="tooltip_home_swipe_pages">上下滑动可在页面之间切换</string>
+    <string name="tooltip_home_long_swipe_drawer">长距离向上滑动打开应用抽屉</string>
+    <string name="home_pages_title">主屏页面</string>
+    <string name="perm_notification_access_message">inkOS 需要通知访问权限才能在此显示你的通知。将跳转到 Android 设置以授予此权限。</string>
+    <string name="perm_write_settings_message">本应用需要修改系统设置的权限才能控制屏幕亮度。将跳转到 Android 设置以授予此权限。</string>
+    <string name="cd_notification_settings">通知设置</string>
+    <string name="cd_edit_hidden_apps">编辑隐藏的应用</string>
+    <string name="cd_drag_to_reorder">拖动以重新排序</string>
+    <string name="cd_newly_installed">新安装</string>
+    <string name="cd_star">星标</string>
+    <string name="cd_home">首页</string>
+    <string name="cd_previous_theme">上一个主题</string>
+    <string name="cd_next_theme">下一个主题</string>
+    <string name="cd_recents_settings">最近使用设置</string>
+    <string name="usage_stats_permission_title">使用情况访问权限</string>
+    <string name="usage_stats_permission_message">此应用需要"使用情况访问"权限才能显示最近使用的应用。将跳转到 Android 设置以授予此权限。</string>
+    <string name="unable_open_app_info">无法打开应用信息</string>
+    <string name="requires_android_p">此操作需要 Android P（9）或更高版本</string>
+    <string name="battery_manager_unavailable">此设备不支持电池管理设置。</string>
+    <string name="dark_theme">深色主题</string>
+    <string name="sample_phone">电话</string>
+    <string name="sample_messages">信息</string>
+    <string name="sample_email">邮件</string>
+    <string name="sample_camera">相机</string>
+
+    <!-- Launch toasts -->
+    <string name="app_not_found">未找到应用</string>
+    <string name="unable_to_launch_shortcut">无法启动快捷方式</string>
+    <string name="shortcut_no_longer_available">快捷方式已不可用</string>
+    <string name="unable_to_launch_app">无法启动应用</string>
+
+    <!-- Font errors -->
+    <string name="font_invalid_title">字体文件无效</string>
+    <string name="font_invalid_message">所选文件无法作为字体加载，请选择有效的字体文件。</string>
+    <string name="file_error_title">文件错误</string>
+    <string name="file_error_message">无法复制所选文件，请重试。</string>
+    <string name="read_more">了解更多</string>
+    <string name="gesture_conflict_desc">短滑与长滑如何与主屏页面协作</string>
+
+    <!-- Gesture conflict sheet -->
+    <string name="gesture_vs_page_conflict">手势与翻页冲突</string>
+    <string name="gesture_conflict_line1">默认情况下，如果主屏有多个应用页面，上/下滑动需要长距离滑动。</string>
+    <string name="gesture_conflict_line2">如果只有一个应用页面，则只需短距离滑动。</string>
+    <string name="gesture_conflict_line3">你可以任选一种方式，也可以在下方调整滑动阈值。</string>
+    <string name="cd_icon_tinted">着色</string>
+    <string name="cd_icon_filled">填充</string>
+    <string name="cd_icon_glyph">字形</string>
+
+    <!-- Notification category fallback text -->
+    <string name="notif_fallback_message">新消息</string>
+    <string name="notif_fallback_email">新邮件</string>
+    <string name="notif_fallback_call">未接来电</string>
+    <string name="notif_fallback_alarm">闹钟</string>
+    <string name="notif_fallback_reminder">提醒</string>
+    <string name="notif_fallback_event">日程</string>
+    <string name="notif_fallback_promo">推广</string>
+    <string name="notif_fallback_transport">正在播放媒体</string>
+    <string name="notif_fallback_system">系统通知</string>
+    <string name="notif_fallback_service">服务通知</string>
+    <string name="notif_fallback_error">错误</string>
+    <string name="notif_fallback_progress">进度更新</string>
+    <string name="notif_fallback_social">社交动态</string>
+    <string name="notif_fallback_status">状态更新</string>
+    <string name="notif_fallback_recommendation">推荐</string>
+    <string name="notif_fallback_generic">已收到通知</string>
+    <string name="search_web_for_fmt">搜索网络：“%1$s”</string>
+    <string name="settings_desc_choose_launcher">选择用作主屏幕的桌面启动器</string>
+    <string name="settings_desc_setup_wizard">重新查看设置向导</string>
+    <string name="settings_desc_learn_gestures">了解手势与交互方式</string>
+    <string name="settings_desc_restart">在不重启设备的情况下重新启动 inkOS</string>
+    <string name="settings_desc_switch_launcher">切换到其他桌面启动器</string>
+    <string name="choose_launcher_title">选择桌面启动器</string>
+    <string name="ui_scaling_desc">一体化 UI 缩放</string>
+    <string name="edit_tooltip_date_title">日期</string>
+    <string name="edit_tooltip_widget_title">底部小组件</string>
+    <string name="edit_tooltip_cue_title">调节条</string>
+    <string name="edit_tooltip_bg_line">点击背景（空白区域）可编辑主题、对齐方式等</string>
+    <string name="edit_tooltip_clock_line">点击时钟可编辑时钟小组件、字体大小、时钟格式等</string>
+    <string name="edit_tooltip_date_line">点击日期可编辑日期行大小、字体、格式等</string>
+    <string name="edit_tooltip_widget_line">点击底部小组件可编辑小组件大小、类型及其他设置</string>
+    <string name="edit_tooltip_cue_line">拖动调节条可调整主屏元素的位置</string>
+    <string name="recents_just_now">刚刚</string>
+    <string name="recents_min_ago_fmt">%1$d 分钟前</string>
+    <string name="recents_hour_ago_fmt">%1$d 小时前</string>
+    <string name="recents_day_ago_fmt">%1$d 天前</string>
+    <string name="apps_no_found">未找到应用</string>
+    <string name="apps_no_available">没有可用的应用</string>
+    <string name="cd_selected">已选中</string>
+    <string name="cd_not_selected">未选中</string>
+    <string name="auth_to_unlock">验证以解锁</string>
+    <string name="auth_to_lock">验证以锁定</string>
+    <string name="add_folder">添加文件夹</string>
+
+    <!-- Guide screen -->
+    <string name="guide_pick_input_method">选择输入方式</string>
+    <string name="guide_home_screen_interactions">主屏交互</string>
+    <string name="guide_home_gestures">主屏手势</string>
+    <string name="guide_home_notifications">主屏通知</string>
+    <string name="guide_home_widgets">主屏小组件</string>
+    <string name="guide_home_screen">主屏</string>
+    <string name="guide_qwerty">QWERTY</string>
+    <string name="guide_home_button">主页</string>
+    <string name="guide_pinch_title">捏合（缩小）</string>
+    <string name="guide_pinch_desc">在空白区域打开快捷菜单</string>
+    <string name="guide_longpress_app_title">长按应用</string>
+    <string name="guide_longpress_app_desc">以选择或替换快捷方式</string>
+    <string name="guide_tap_clock_title">点按时钟/日期/语录</string>
+    <string name="guide_tap_clock_desc">以访问其它快捷方式</string>
+    <string name="guide_short_swipes_title">短距离滑动</string>
+    <string name="guide_short_swipes_desc">在主屏页面之间切换</string>
+    <string name="guide_swipe_up_title">向上滑动</string>
+    <string name="guide_swipe_up_desc">应用抽屉——所有应用的列表</string>
+    <string name="guide_swipe_down_title">向下滑动</string>
+    <string name="guide_swipe_down_desc">简易托盘——Android 风格通知</string>
+    <string name="guide_swipe_left_title">向左滑动</string>
+    <string name="guide_swipe_left_desc">信件——缓存的长文通知</string>
+    <string name="guide_swipe_right_title">向右滑动</string>
+    <string name="guide_swipe_right_desc">最近使用——近期打开的应用</string>
+    <string name="guide_signal_asterisk_title">信号*</string>
+    <string name="guide_signal_asterisk_desc">星号或圆点表示有通知</string>
+    <string name="guide_signal_title">信号</string>
+    <string name="guide_signal_desc">通知文字显示在应用名称下方</string>
+    <string name="guide_spotify_desc">正在播放的信息显示在应用下方</string>
+    <string name="guide_allow_list_title">允许列表</string>
+    <string name="guide_allow_list_desc">设置 / 通知 / 主屏允许列表</string>
+    <string name="guide_quote_desc">在主屏底部显示自定义文字</string>
+    <string name="guide_events_desc">显示设备中即将到来的日历日程</string>
+    <string name="guide_android_widget_desc">在主屏嵌入任意 Android 小组件</string>
+    <string name="guide_total_usage_desc">一目了然地追踪每日屏幕使用时间</string>
+    <string name="guide_menu_touch_title">触摸</string>
+    <string name="guide_menu_touch_desc">以点按为主的交互</string>
+    <string name="guide_menu_dpad_title">DPad / T9</string>
+    <string name="guide_menu_dpad_desc">硬件按键与拨号盘</string>
+    <string name="guide_menu_qwerty_title">QWERTY</string>
+    <string name="guide_menu_qwerty_desc">输入与导航模式</string>
+    <string name="guide_menu_search_desc">应用、联系人、文件、网络等</string>
+    <string name="guide_dpad_longpress9_title">长按 9</string>
+    <string name="guide_dpad_longpress9_desc">打开快捷菜单</string>
+    <string name="guide_dpad_longpress_center_title">长按 DPad 中央</string>
+    <string name="guide_dpad_updown_title">DPad 上/下</string>
+    <string name="guide_dpad_updown_desc">在应用和主屏页面间移动</string>
+    <string name="guide_dpad_leftright_title">DPad 左/右</string>
+    <string name="guide_dpad_leftright_desc">触发已配置的滑动操作</string>
+    <string name="guide_letters_center_title">DPad 中央 / Enter / 3</string>
+    <string name="guide_letters_center_desc">打开当前选中的通知</string>
+    <string name="guide_letters_backspace_title">退格 / Menu / 1</string>
+    <string name="guide_letters_backspace_desc">关闭当前选中的通知</string>
+    <string name="guide_letters_longpress_title">长按（仅触屏）</string>
+    <string name="guide_letters_longpress_desc">关闭全部通知</string>
+    <string name="guide_letters_updown_desc">在通知之间移动</string>
+    <string name="guide_qwerty_search_title">从主屏搜索</string>
+    <string name="guide_qwerty_search_desc">直接在主屏输入即可</string>
+    <string name="guide_qwerty_dpad_title">使用 DPad 导航</string>
+    <string name="guide_qwerty_dpad_desc">支持 Pastiera navmode 等键盘。</string>
+    <string name="guide_search_apps_title">应用</string>
+    <string name="guide_search_apps_desc">查找已安装的应用</string>
+    <string name="guide_search_contacts_title">联系人</string>
+    <string name="guide_search_files_title">文件</string>
+    <string name="guide_search_shortcuts_desc">查找应用快捷方式</string>
+    <string name="guide_search_contacts_desc">查找联系人以通话或发消息</string>
+    <string name="guide_search_files_desc">查找设备中的文件</string>
+    <string name="guide_search_music_title">音乐</string>
+    <string name="guide_search_music_desc">在音乐库中查找音乐</string>
+    <string name="guide_search_web_title">网络</string>
+    <string name="guide_search_web_desc">搜索网络</string>
+    <string name="guide_search_url_title">URL</string>
+    <string name="guide_search_url_desc">直接打开网址</string>
+
+    <!-- Edit mode panel labels -->
+    <string name="em_hide_chevrons_icon">隐藏箭头与图标</string>
+    <string name="em_text_size">文字大小</string>
+    <string name="em_font">字体</string>
+    <string name="em_set">已设置</string>
+    <string name="em_chosen_theme">已选主题</string>
+    <string name="em_corners">圆角</string>
+    <string name="em_double_tap_action">双击操作</string>
+    <string name="em_click_quote_action">单击语录操作</string>
+    <string name="em_all_noti_settings">全部通知设置 ></string>
+    <string name="em_enable_search">启用搜索</string>
+    <string name="em_none">无</string>
+    <string name="em_close">关闭</string>
+
+</resources>

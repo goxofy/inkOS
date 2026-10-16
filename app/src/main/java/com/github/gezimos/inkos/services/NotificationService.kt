@@ -2,6 +2,7 @@ package com.github.gezimos.inkos.services
 
 import android.content.ComponentName
 import android.content.Context
+import com.github.gezimos.inkos.R
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -312,20 +313,20 @@ class NotificationService : NotificationListenerService() {
             
             // Provide category-specific fallback text
             message = when (sbn.notification.category) {
-                android.app.Notification.CATEGORY_MESSAGE -> "New message"
-                android.app.Notification.CATEGORY_EMAIL -> "New email"
-                android.app.Notification.CATEGORY_CALL -> "Missed call"
-                android.app.Notification.CATEGORY_ALARM -> "Alarm"
-                android.app.Notification.CATEGORY_REMINDER -> "Reminder"
-                android.app.Notification.CATEGORY_EVENT -> "Event"
-                android.app.Notification.CATEGORY_PROMO -> "Promotion"
-                android.app.Notification.CATEGORY_SYSTEM -> "System notification"
-                android.app.Notification.CATEGORY_SERVICE -> "Service notification"
-                android.app.Notification.CATEGORY_ERROR -> "Error"
-                android.app.Notification.CATEGORY_PROGRESS -> "Progress update"
-                android.app.Notification.CATEGORY_SOCIAL -> "Social update"
-                android.app.Notification.CATEGORY_STATUS -> "Status update"
-                android.app.Notification.CATEGORY_RECOMMENDATION -> "Recommendation"
+                android.app.Notification.CATEGORY_MESSAGE -> getString(R.string.notif_fallback_message)
+                android.app.Notification.CATEGORY_EMAIL -> getString(R.string.notif_fallback_email)
+                android.app.Notification.CATEGORY_CALL -> getString(R.string.notif_fallback_call)
+                android.app.Notification.CATEGORY_ALARM -> getString(R.string.notif_fallback_alarm)
+                android.app.Notification.CATEGORY_REMINDER -> getString(R.string.notif_fallback_reminder)
+                android.app.Notification.CATEGORY_EVENT -> getString(R.string.notif_fallback_event)
+                android.app.Notification.CATEGORY_PROMO -> getString(R.string.notif_fallback_promo)
+                android.app.Notification.CATEGORY_SYSTEM -> getString(R.string.notif_fallback_system)
+                android.app.Notification.CATEGORY_SERVICE -> getString(R.string.notif_fallback_service)
+                android.app.Notification.CATEGORY_ERROR -> getString(R.string.notif_fallback_error)
+                android.app.Notification.CATEGORY_PROGRESS -> getString(R.string.notif_fallback_progress)
+                android.app.Notification.CATEGORY_SOCIAL -> getString(R.string.notif_fallback_social)
+                android.app.Notification.CATEGORY_STATUS -> getString(R.string.notif_fallback_status)
+                android.app.Notification.CATEGORY_RECOMMENDATION -> getString(R.string.notif_fallback_recommendation)
                 else -> null
             }
         }

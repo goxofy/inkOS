@@ -10,6 +10,7 @@ import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.github.gezimos.inkos.R
 import androidx.compose.foundation.background
 import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Column
@@ -177,8 +178,8 @@ class RecentsFragment : Fragment() {
                         if (!hasShownDialog) {
                             hasShownDialog = true
                             showPermissionExplanationDialog(
-                                title = "Usage Stats Permission",
-                                message = "This app needs usage stats permission to show your recently used apps. You will be taken to Android settings to grant this permission.",
+                                title = getString(R.string.usage_stats_permission_title),
+                                message = getString(R.string.usage_stats_permission_message),
                                 onContinue = { requestUsageStatsPermission() }
                             )
                         }
@@ -249,7 +250,7 @@ class RecentsFragment : Fragment() {
                     try {
                         textMeasurer
                             .measure(
-                                text = AnnotatedString("Ag"),
+                                text = AnnotatedString("Ag汉"),
                                 style = TextStyle(
                                     fontSize = appsDrawer.appDrawerSize.sp.scaled(drawerScreenScale),
                                     fontFamily = appFontFamily
@@ -622,7 +623,7 @@ class RecentsFragment : Fragment() {
             val intent = Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS)
             startActivity(intent)
         } catch (_: Exception) {
-            showShortToast("Unable to open settings")
+            showShortToast(requireContext().getString(R.string.unable_open_settings))
         }
     }
 
