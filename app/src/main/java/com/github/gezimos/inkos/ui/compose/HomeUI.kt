@@ -134,6 +134,8 @@ import androidx.compose.ui.unit.sp
 import com.github.gezimos.inkos.R
 import com.github.gezimos.inkos.data.Constants
 import com.github.gezimos.inkos.data.HomeAppUiState
+import com.github.gezimos.inkos.data.homeAppPages
+import com.github.gezimos.inkos.data.isUnassignedSlot
 import com.github.gezimos.inkos.data.Prefs
 import com.github.gezimos.inkos.helper.AudioWidgetHelper
 import com.github.gezimos.inkos.helper.EditModeHelper
@@ -341,6 +343,7 @@ fun HomeUI(
             HomeAppsPager(
                 state = state,
                 callbacks = callbacks,
+                showEditMode = showEditMode,
                 selectedAppId = selectedAppId,
                 showDpadMode = showDpadMode,
                 dpadActivatedAppId = dpadActivatedAppId,
@@ -2962,6 +2965,7 @@ private fun HomeAppsPager(
     modifier: Modifier = Modifier,
     state: HomeUiRenderState,
     callbacks: HomeUiCallbacks,
+    showEditMode: Boolean = false,
     selectedAppId: Int? = null,
     showDpadMode: Boolean = false,
     dpadActivatedAppId: Int? = null,
@@ -2969,12 +2973,10 @@ private fun HomeAppsPager(
 ) {
     val screenScale = rememberScreenScale()
     val scaledAppTextSize = state.appTextSize * screenScale
-    val appsPerPage = state.appsPerPage.coerceAtLeast(1)
-    val chunks = remember(state.homeApps, appsPerPage) {
-        state.homeApps.chunked(appsPerPage)
+    val pages = remember(state.homeApps, state.appsPerPage, state.totalPages, showEditMode) {
+        homeAppPages(state.homeApps, state.appsPerPage, state.totalPages, showEditMode)
     }
-    val pageIndex = state.currentPage.coerceIn(0, maxOf(chunks.size - 1, 0))
-    val appsOnPage = chunks.getOrNull(pageIndex) ?: emptyList()
+    val appsOnPage = pages.getOrNull(state.currentPage).orEmpty()
     val textAlign = when (state.homeAlignment) {
         0 -> android.view.Gravity.START
         2 -> android.view.Gravity.END
@@ -3560,7 +3562,7 @@ private fun HomeAppIconContent(
     val density = LocalDensity.current
     val sizePx = with(density) { appNameHeight.toPx().toInt() }.coerceAtLeast(1)
 
-    val isPlaceholder = app.activityPackage.isBlank() && app.shortcutId == null
+    val isPlaceholder = app.isUnassignedSlot
 
     val isSyntheticForIcon = remember(app.activityPackage, app.shortcutId) {
         IconUtility.isSyntheticPackage(app.activityPackage) &&

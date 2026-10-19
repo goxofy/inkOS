@@ -58,6 +58,8 @@ import com.github.gezimos.inkos.data.Constants
 import com.github.gezimos.inkos.data.Constants.Action
 import com.github.gezimos.inkos.data.Constants.AppDrawerFlag
 import com.github.gezimos.inkos.data.HomeAppUiState
+import com.github.gezimos.inkos.data.homeAppPages
+import com.github.gezimos.inkos.data.homeAppSelectionIndex
 import com.github.gezimos.inkos.data.Prefs
 import com.github.gezimos.inkos.helper.AudioWidgetHelper
 import com.github.gezimos.inkos.helper.AppWidgetHelper
@@ -252,12 +254,12 @@ class HomeFragmentCompose : Fragment() {
                     val homeAppsBoundsState = remember { mutableStateOf<androidx.compose.ui.geometry.Rect?>(null) }
                     LocalDensity.current
 
-                    val chunks = remember(fullRenderState.homeApps, fullRenderState.appsPerPage) {
-                        fullRenderState.homeApps.chunked(fullRenderState.appsPerPage)
+                    val isEditMode by EditModeHelper.isEditModeFlow.collectAsState()
+                    val pages = remember(fullRenderState.homeApps, fullRenderState.appsPerPage, fullRenderState.totalPages, isEditMode) {
+                        homeAppPages(fullRenderState.homeApps, fullRenderState.appsPerPage, fullRenderState.totalPages, isEditMode)
                     }
-                    val appsOnPage = remember(chunks, fullRenderState.currentPage) {
-                        chunks.getOrNull(fullRenderState.currentPage) ?: emptyList()
-                    }
+                    val appsOnPage = pages.getOrNull(fullRenderState.currentPage).orEmpty()
+                    val appsOnPageSizes = remember(pages) { pages.map { it.size } }
                     val selectedIndex = remember { mutableStateOf(0) }
                     val dpadMode = remember { mutableStateOf(false) }
                     val dpadActivatedAppId = remember { mutableStateOf<Int?>(null) }
@@ -269,8 +271,9 @@ class HomeFragmentCompose : Fragment() {
                     val selectedMediaButton = remember { mutableStateOf(0) }
 
                     
-                    // Observe edit mode state changes
-                    val isEditMode by EditModeHelper.isEditModeFlow.collectAsState()
+                    val previousPageApps = remember { mutableStateOf(appsOnPage) }
+                    val previousPage = remember { mutableIntStateOf(fullRenderState.currentPage) }
+                    val previousEditMode = remember { mutableStateOf(isEditMode) }
 
                     // One-time edit mode tooltip — multi-step with Next button
                     val editTooltipKey = "tooltip_edit_mode_shown"
@@ -326,12 +329,30 @@ class HomeFragmentCompose : Fragment() {
                         try { focusRequester.requestFocus() } catch (_: Exception) {}
                     }
 
-                    LaunchedEffect(fullRenderState.currentPage, appsOnPage.size) {
-                        selectedIndex.value = selectedIndex.value.coerceIn(0, maxOf(appsOnPage.size - 1, 0))
+                    LaunchedEffect(fullRenderState.currentPage, appsOnPage, isEditMode) {
+                        val samePage = previousPage.intValue == fullRenderState.currentPage
+                        val previousApp = previousPageApps.value.getOrNull(selectedIndex.value)
+                        val nextIndex = if (focusZone.value == com.github.gezimos.inkos.ui.compose.FocusZone.APPS) {
+                            homeAppSelectionIndex(appsOnPage, previousApp?.id.takeIf { samePage }, selectedIndex.value)
+                        } else -1
+                        val nextApp = appsOnPage.getOrNull(nextIndex)
+                        val selectionChanged = previousApp?.id != nextApp?.id ||
+                            previousApp?.activityPackage != nextApp?.activityPackage ||
+                            previousApp?.activityClass != nextApp?.activityClass ||
+                            previousApp?.shortcutId != nextApp?.shortcutId ||
+                            previousApp?.user != nextApp?.user
+                        if (!samePage || previousEditMode.value != isEditMode || selectionChanged) {
+                            keyPressTracker.reset()
+                            dpadActivatedAppId.value = null
+                        }
+                        selectedIndex.value = nextIndex
+                        previousPageApps.value = appsOnPage
+                        previousPage.intValue = fullRenderState.currentPage
+                        previousEditMode.value = isEditMode
                     }
-                    
-        LaunchedEffect(focusZone.value) {
-            if (focusZone.value != com.github.gezimos.inkos.ui.compose.FocusZone.APPS) {
+
+        LaunchedEffect(focusZone.value, appsOnPage.isEmpty()) {
+            if (focusZone.value != com.github.gezimos.inkos.ui.compose.FocusZone.APPS || appsOnPage.isEmpty()) {
                 selectedIndex.value = -1
             } else if (appsOnPage.isNotEmpty() && selectedIndex.value < 0) {
                 selectedIndex.value = 0
@@ -354,7 +375,7 @@ class HomeFragmentCompose : Fragment() {
                                     appsOnPageSize = appsOnPage.size,
                                     currentPage = fullRenderState.currentPage,
                                     totalPages = fullRenderState.totalPages,
-                                    appsPerPage = fullRenderState.appsPerPage,
+                                    appsOnPageSizes = appsOnPageSizes,
                                     adjustPageBy = { delta -> try { adjustPageBy(delta, fullRenderState.totalPages) } catch (_: Exception) {} },
                                     onAppClick = { index ->
                                         val app = appsOnPage.getOrNull(index)
