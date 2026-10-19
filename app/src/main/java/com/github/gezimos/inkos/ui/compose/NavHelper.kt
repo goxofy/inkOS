@@ -6,6 +6,7 @@ import androidx.compose.ui.input.key.KeyEvent
 import androidx.compose.ui.input.key.KeyEventType
 import androidx.compose.ui.input.key.key
 import androidx.compose.ui.input.key.type
+import com.github.gezimos.inkos.data.homePageEdgeIndex
 class KeyPressTracker {
     private var keyDownTime: Long = 0L
     private var trackedKey: Key? = null
@@ -90,7 +91,7 @@ object NavHelper {
         appsOnPageSize: Int,
         currentPage: Int,
         totalPages: Int,
-        appsPerPage: Int,
+        appsOnPageSizes: List<Int>,
         adjustPageBy: (Int) -> Unit,
         onAppClick: (index: Int) -> Unit,
         onAppLongClick: (index: Int) -> Unit,
@@ -112,6 +113,36 @@ object NavHelper {
         onSwipeUp: (() -> Unit)? = null,
         onSwipeDown: (() -> Unit)? = null
     ): Boolean {
+        val canFocusApps = appsOnPageSize > 0 || totalPages > 1
+
+        fun moveAppPage(delta: Int, fromEnd: Boolean): Boolean {
+            val targetPage = currentPage + delta
+            if (targetPage !in 0 until totalPages) return false
+            adjustPageBy(delta)
+            selectedIndex.value = homePageEdgeIndex(appsOnPageSizes, targetPage, fromEnd)
+            keyPressTracker.reset()
+            return true
+        }
+
+        fun focusAboveApps(): Unit {
+            when {
+                showDate -> focusZone?.value = FocusZone.DATE
+                showClock -> focusZone?.value = FocusZone.CLOCK
+                else -> onSwipeUp?.invoke()
+            }
+        }
+
+        fun focusBelowApps(): Unit {
+            when {
+                showMediaWidget -> {
+                    focusZone?.value = FocusZone.MEDIA_WIDGET
+                    selectedMediaButton?.value = 0
+                }
+                showQuote -> focusZone?.value = FocusZone.QUOTE
+                else -> onSwipeDown?.invoke()
+            }
+        }
+
         if (keyEvent.key == Key.DirectionCenter || keyEvent.key == Key.Enter) {
             if (keyEvent.type == KeyEventType.KeyDown && keyEvent.nativeKeyEvent.repeatCount == 0) {
                 dpadMode.value = true
@@ -128,6 +159,10 @@ object NavHelper {
             }
             // For APPS zone, use long-press detection
             if (focusZone == null || focusZone.value == FocusZone.APPS) {
+                if (selectedIndex.value !in 0 until appsOnPageSize) {
+                    keyPressTracker.reset()
+                    return true
+                }
                 return when (keyEvent.type) {
                     KeyEventType.KeyDown -> {
                         dpadMode.value = true
@@ -166,29 +201,28 @@ object NavHelper {
                 if (focusZone != null) {
                     when (focusZone.value) {
                         FocusZone.CLOCK -> {
-                            if (showDate) focusZone.value = FocusZone.DATE
-                            else if (appsOnPageSize > 0) focusZone.value = FocusZone.APPS
+                            if (showDate) {
+                                focusZone.value = FocusZone.DATE
+                            } else if (canFocusApps) {
+                                focusZone.value = FocusZone.APPS
+                                selectedIndex.value = if (appsOnPageSize > 0) 0 else -1
+                            } else {
+                                focusBelowApps()
+                            }
                         }
                         FocusZone.DATE -> {
-                            if (appsOnPageSize > 0) focusZone.value = FocusZone.APPS
+                            if (canFocusApps) {
+                                focusZone.value = FocusZone.APPS
+                                selectedIndex.value = if (appsOnPageSize > 0) 0 else -1
+                            } else {
+                                focusBelowApps()
+                            }
                         }
                         FocusZone.APPS -> {
-                            if (appsOnPageSize > 0) {
-                                if (selectedIndex.value < appsOnPageSize - 1) {
-                                    selectedIndex.value = selectedIndex.value + 1
-                                } else if (currentPage < totalPages - 1) {
-                                    adjustPageBy(1)
-                                    selectedIndex.value = 0
-                                } else {
-                                    if (showMediaWidget) {
-                                        focusZone.value = FocusZone.MEDIA_WIDGET
-                                        selectedMediaButton?.value = 0
-                                    } else if (showQuote) {
-                                        focusZone.value = FocusZone.QUOTE
-                                    } else {
-                                        onSwipeDown?.invoke()
-                                    }
-                                }
+                            if (appsOnPageSize > 0 && selectedIndex.value < appsOnPageSize - 1) {
+                                selectedIndex.value = selectedIndex.value + 1
+                            } else if (!moveAppPage(1, fromEnd = false)) {
+                                focusBelowApps()
                             }
                         }
                         FocusZone.MEDIA_WIDGET -> {
@@ -213,13 +247,10 @@ object NavHelper {
                     }
                 } else {
                     // Legacy behavior when focusZone is null
-                    if (appsOnPageSize > 0) {
-                        if (selectedIndex.value < appsOnPageSize - 1) {
-                            selectedIndex.value = selectedIndex.value + 1
-                        } else if (currentPage < totalPages - 1) {
-                            adjustPageBy(1)
-                            selectedIndex.value = 0
-                        }
+                    if (appsOnPageSize > 0 && selectedIndex.value < appsOnPageSize - 1) {
+                        selectedIndex.value = selectedIndex.value + 1
+                    } else {
+                        moveAppPage(1, fromEnd = false)
                     }
                 }
                 true
@@ -237,51 +268,41 @@ object NavHelper {
                             else onSwipeUp?.invoke()
                         }
                         FocusZone.APPS -> {
-                            if (appsOnPageSize > 0) {
-                                if (selectedIndex.value > 0) {
-                                    selectedIndex.value = selectedIndex.value - 1
-                                } else if (currentPage > 0) {
-                                    adjustPageBy(-1)
-                                    selectedIndex.value = appsPerPage - 1
-                                } else {
-                                    if (showDate) {
-                                        focusZone.value = FocusZone.DATE
-                                    } else if (showClock) {
-                                        focusZone.value = FocusZone.CLOCK
-                                    } else {
-                                        onSwipeUp?.invoke()
-                                    }
-                                }
+                            if (appsOnPageSize > 0 && selectedIndex.value > 0) {
+                                selectedIndex.value = selectedIndex.value - 1
+                            } else if (!moveAppPage(-1, fromEnd = true)) {
+                                focusAboveApps()
                             }
                         }
                         FocusZone.MEDIA_WIDGET -> {
                             // Navigate up through media buttons
                             if (selectedMediaButton != null && selectedMediaButton.value > 0) {
                                 selectedMediaButton.value = selectedMediaButton.value - 1
-                            } else if (appsOnPageSize > 0) {
+                            } else if (canFocusApps) {
                                 focusZone.value = FocusZone.APPS
                                 selectedIndex.value = appsOnPageSize - 1
+                            } else {
+                                focusAboveApps()
                             }
                         }
                         FocusZone.QUOTE -> {
                             if (showMediaWidget) {
                                 focusZone.value = FocusZone.MEDIA_WIDGET
                                 selectedMediaButton?.value = 4 // Last button (Stop)
-                            } else if (appsOnPageSize > 0) {
+                            } else if (canFocusApps) {
                                 focusZone.value = FocusZone.APPS
                                 selectedIndex.value = appsOnPageSize - 1
+                            } else {
+                                focusAboveApps()
                             }
                         }
                     }
                 } else {
                     // Legacy behavior when focusZone is null
-                    if (appsOnPageSize > 0) {
-                        if (selectedIndex.value > 0) {
-                            selectedIndex.value = selectedIndex.value - 1
-                        } else if (currentPage > 0) {
-                            adjustPageBy(-1)
-                            selectedIndex.value = appsPerPage - 1
-                        }
+                    if (appsOnPageSize > 0 && selectedIndex.value > 0) {
+                        selectedIndex.value = selectedIndex.value - 1
+                    } else {
+                        moveAppPage(-1, fromEnd = true)
                     }
                 }
                 true
