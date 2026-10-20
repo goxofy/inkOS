@@ -528,9 +528,7 @@ ComposeDialogManager(this, this).showErrorDialog(this, getString(R.string.import
                 prefs
             ) { allowEdgeSwipeBack && prefs.edgeSwipeBackEnabled }
         } catch (_: Exception) {}
-        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
-        viewModel.getAppList(includeHiddenApps = true)
-        
+
         try {
             val appsRepository = com.github.gezimos.inkos.data.repository.AppsRepository.getInstance(application)
             appsRepository.registerPackageReceiver(this)

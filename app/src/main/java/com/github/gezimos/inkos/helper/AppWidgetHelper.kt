@@ -11,6 +11,7 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
+import android.os.SystemClock
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -42,26 +43,49 @@ class AppWidgetHelper private constructor(private val context: Context) {
     val widgetViewState: StateFlow<AppWidgetHostView?> = _widgetView
 
     private var isListening = false
+
     fun startListening() {
-        if (!isListening) {
-            try {
-                appWidgetHost.startListening()
-                isListening = true
-            } catch (e: Exception) {
-                Log.e(TAG, "Failed to start AppWidgetHost listening", e)
-            }
+        val widgetId = prefs.androidWidgetId
+        if (widgetId == -1 || !prefs.showAndroidWidget) {
+            _widgetView.value = null
+            return
         }
-        // Restore previously bound widget if available
-        restoreWidget()
+        if (!ensureListening()) return
+        restoreWidget(widgetId)
     }
+
+    private fun ensureListening(): Boolean {
+        if (isListening) return true
+        val startedAt = SystemClock.elapsedRealtime()
+        return try {
+            appWidgetHost.startListening()
+            isListening = true
+            logSlowOperation("startListening", startedAt)
+            true
+        } catch (e: Exception) {
+            Log.e(TAG, "Failed to start AppWidgetHost listening", e)
+            false
+        }
+    }
+
     fun stopListening() {
-        if (isListening) {
-            try {
-                appWidgetHost.stopListening()
-                isListening = false
-            } catch (e: Exception) {
-                Log.e(TAG, "Failed to stop AppWidgetHost listening", e)
-            }
+        _widgetView.value = null
+        if (!isListening) return
+        val startedAt = SystemClock.elapsedRealtime()
+        try {
+            appWidgetHost.stopListening()
+        } catch (e: Exception) {
+            Log.e(TAG, "Failed to stop AppWidgetHost listening", e)
+        } finally {
+            isListening = false
+            logSlowOperation("stopListening", startedAt)
+        }
+    }
+
+    private fun logSlowOperation(operation: String, startedAt: Long) {
+        val elapsedMs = SystemClock.elapsedRealtime() - startedAt
+        if (elapsedMs >= 100L) {
+            Log.w(TAG, "$operation took ${elapsedMs}ms")
         }
     }
     fun allocateWidgetId(): Int {
@@ -115,16 +139,20 @@ class AppWidgetHelper private constructor(private val context: Context) {
     }
     fun onWidgetPicked(widgetId: Int) {
         prefs.androidWidgetId = widgetId
-        val view = createWidgetView(widgetId)
-        _widgetView.value = view
+        if (!ensureListening()) {
+            _widgetView.value = null
+            return
+        }
+        _widgetView.value = createWidgetView(widgetId)
     }
+
     fun removeWidget() {
         val currentId = prefs.androidWidgetId
         if (currentId != -1) {
             deallocateWidgetId(currentId)
             prefs.androidWidgetId = -1
         }
-        _widgetView.value = null
+        stopListening()
     }
     fun getConfigureIntent(widgetId: Int): Intent? {
         val info = getWidgetInfo(widgetId) ?: return null
@@ -134,19 +162,17 @@ class AppWidgetHelper private constructor(private val context: Context) {
             putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, widgetId)
         }
     }
-    private fun restoreWidget() {
-        val widgetId = prefs.androidWidgetId
-        if (widgetId != -1 && prefs.showAndroidWidget) {
-            val view = createWidgetView(widgetId)
-            if (view != null) {
-                _widgetView.value = view
-            } else {
-                // Widget no longer valid — clean up
-                Log.w(TAG, "Stored widget ID $widgetId is no longer valid, clearing")
-                prefs.androidWidgetId = -1
-                _widgetView.value = null
-            }
+    private fun restoreWidget(widgetId: Int) {
+        if (_widgetView.value?.appWidgetId == widgetId) return
+        val startedAt = SystemClock.elapsedRealtime()
+        val view = createWidgetView(widgetId)
+        logSlowOperation("restoreWidget", startedAt)
+        if (view != null) {
+            _widgetView.value = view
         } else {
+            // Widget no longer valid — clean up
+            Log.w(TAG, "Stored widget ID $widgetId is no longer valid, clearing")
+            prefs.androidWidgetId = -1
             _widgetView.value = null
         }
     }

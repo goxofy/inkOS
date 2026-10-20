@@ -48,12 +48,15 @@ object Constants {
     const val DEFAULT_MAX_HOME_PAGES = 10
     var MAX_HOME_PAGES = DEFAULT_MAX_HOME_PAGES
 
-    const val DEFAULT_SHORT_SWIPE_RATIO = 0.25f
-    const val DEFAULT_LONG_SWIPE_RATIO = 2.5f
+    const val DEFAULT_SHORT_SWIPE_RATIO = 0.20f
+    const val DEFAULT_LONG_SWIPE_RATIO = 4.0f
     const val MIN_SHORT_SWIPE_RATIO = 0.01f
     const val MAX_SHORT_SWIPE_RATIO = 1.0f
     const val MIN_LONG_SWIPE_RATIO = 1.1f
     const val MAX_LONG_SWIPE_RATIO = 5.0f
+
+    const val DRAWER_ICON_PREWARM_DELAY_MS = 1_500L
+    const val DRAWER_ICON_PREWARM_PARALLELISM = 2
 
     const val DEFAULT_APP_DRAWER_GAP = 8
 

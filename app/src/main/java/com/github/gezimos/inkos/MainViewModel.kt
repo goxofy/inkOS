@@ -926,13 +926,13 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             }
         }
         
-        // Preload app list for instant app drawer opening
+        // Preload the visible drawer list. Hidden apps are loaded only when their editor opens.
         appsRepository.refreshAppList(includeHiddenApps = false, flag = null)
-        appsRepository.refreshHiddenApps()
 
         viewModelScope.launch(Dispatchers.Default) {
-            // Wait for app list to be populated
+            // Let the launcher become interactive before background icon decoding starts.
             appsRepository.appList.first { it.isNotEmpty() }
+            kotlinx.coroutines.delay(Constants.DRAWER_ICON_PREWARM_DELAY_MS)
             preWarmDrawerIcons()
         }
     }
@@ -1878,7 +1878,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         val apps = appsRepository.appList.value
         if (apps.isEmpty()) return
 
-        val ioLimited = Dispatchers.IO.limitedParallelism(16)
+        val ioLimited = Dispatchers.IO.limitedParallelism(Constants.DRAWER_ICON_PREWARM_PARALLELISM)
         kotlinx.coroutines.coroutineScope {
             apps.forEach { app ->
                 launch(ioLimited) {

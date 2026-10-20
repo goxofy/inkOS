@@ -49,7 +49,6 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.github.gezimos.common.showShortToast
 import com.github.gezimos.inkos.MainViewModel
@@ -548,20 +547,12 @@ class HomeFragmentCompose : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.isinkosDefault()
         viewModel.refreshHomeAppsUiState(requireContext())
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(androidx.lifecycle.Lifecycle.State.STARTED) {
-                NotificationManager.getInstance(requireContext()).notificationInfoState.collect { _ ->
-                    // Refresh home apps to update notification badges
-                    viewModel.refreshHomeAppsUiState(requireContext())
-                }
-            }
-        }
+        // Keep the host listening while this view exists so screen-off/on does not reconnect it.
+        appWidgetHelper.startListening()
     }
 
     override fun onStart() {
         super.onStart()
-        // Start listening for AppWidget updates
-        appWidgetHelper.startListening()
         batteryReceiver = BatteryReceiver { newDateText: String, newBatteryText: String, isCharging: Boolean ->
             try { viewModel.updateDateAndBatteryText(newDateText, newBatteryText, isCharging) } catch (_: Exception) {}
         }
@@ -581,13 +572,16 @@ class HomeFragmentCompose : Fragment() {
 
     override fun onStop() {
         super.onStop()
-        // Stop listening for AppWidget updates
-        appWidgetHelper.stopListening()
         try {
             requireContext().unregisterReceiver(batteryReceiver)
         } catch (e: Exception) {
             e.printStackTrace()
         }
+    }
+
+    override fun onDestroyView() {
+        appWidgetHelper.stopListening()
+        super.onDestroyView()
     }
 
     override fun onResume() {

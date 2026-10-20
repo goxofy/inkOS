@@ -3,6 +3,14 @@ package com.github.gezimos.inkos.data
 import android.content.Context
 import com.github.gezimos.inkos.BuildConfig
 
+internal const val GESTURE_THRESHOLD_MIGRATION_VERSION = 101014
+
+internal fun shouldApplyGestureThresholdMigration(
+    savedVersionCode: Int,
+    currentVersionCode: Int
+): Boolean = savedVersionCode < GESTURE_THRESHOLD_MIGRATION_VERSION &&
+    currentVersionCode >= GESTURE_THRESHOLD_MIGRATION_VERSION
+
 class Migration(val context: Context) {
     fun migratePreferencesOnVersionUpdate(prefs: Prefs) {
         val currentVersionCode = BuildConfig.VERSION_CODE
@@ -253,6 +261,11 @@ class Migration(val context: Context) {
         if (savedVersionCode in 1..101004) {
             prefs.commitFirstOpen(true)
             prefs.commitThemePickerShown(true) // Skip auto theme picker, it's embedded in onboarding
+        }
+
+        if (shouldApplyGestureThresholdMigration(savedVersionCode, currentVersionCode)) {
+            prefs.shortSwipeThresholdRatio = Constants.DEFAULT_SHORT_SWIPE_RATIO
+            prefs.longSwipeThresholdRatio = Constants.DEFAULT_LONG_SWIPE_RATIO
         }
 
         prefs.appVersion = currentVersionCode
